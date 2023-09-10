@@ -80,4 +80,4 @@ Route::post('/chat-message', function (\Illuminate\Http\Request $request) {
 //Route::get('/chat-message', [testMessageControl::class, 'testMessage']);
 
 //hello
-
+//hello2
