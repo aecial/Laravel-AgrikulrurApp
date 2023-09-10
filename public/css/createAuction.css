@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+}
+
+/* Typography */
+body {
+  font-family: "Merriweather", serif;
+}
+.title {
+  font-size: 5rem;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+}
+.md-title {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+}
+p {
+  font-size: 3rem;
+}
+.desc {
+  text-indent: 1rem;
+  text-align: justify;
+}
+#brand {
+  font-size: 4rem;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+}
+
+#nav-link {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+}
+/* Typography */
+
+/* Navigation Bar CSS */
+nav {
+  box-shadow: 1px 2px 5px #5d5b5b;
+}
+.nav-pic {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+}
+#nav-link,
+#brand {
+  color: #6c9c82 !important;
+}
+.logo-pic {
+  width: 15rem;
+  height: 15rem;
+}
+.dropdown-menu {
+  width: 15rem !important;
+}
+
+.form-card {
+  background-image: linear-gradient(140deg, #6c9c82, #215136);
+  width: 100%;
+  height: 82.5vh !important;
+}
+#createForm {
+  margin-top: 10%;
+}
+/* Placeholder Color */
+::-webkit-input-placeholder {
+  color: white !important;
+}
+
+::-moz-placeholder {
+  color: white !important;
+}
+
+::-ms-placeholder {
+  color: white !important;
+}
+
+::placeholder {
+  color: white !important;
+}
+/* Placeholder Color */
+
+.form-select {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+@media screen and (max-width: 576px) {
+  .logo-pic {
+    width: 50px;
+    height: 50px;
+  }
+  .title {
+    font-size: 3rem;
+  }
+  .md-title {
+    font-size: 2rem;
+  }
+  #nav-link {
+    font-size: 2rem;
+  }
+  .desc {
+    font-size: 1.5rem;
+  }
+  form {
+    font-size: 0.1rem !important;
+  }
+  #createForm {
+    margin-top: 35%;
+  }
+}
