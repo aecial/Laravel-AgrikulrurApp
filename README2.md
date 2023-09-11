@@ -5,4 +5,8 @@ Note: change the ip address to your machine/pc's ip address
 
 2. php artisan websocket:serve
 
+<<<<<<< HEAD
 3. npm run dev -- --host=192.168.43.22    
+=======
+3. npm run dev -- --host=192.168.43.22   
+>>>>>>> e90c847190e8180a7972ad6252eaa327257df6fe
