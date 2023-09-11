@@ -24,7 +24,7 @@
 
             <!--Navigation Bar-->
 
-            <nav class="navbar nav-underline sticky-lg-top navbar-expand-xxl bg-body-tertiary">
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container-fluid">
                     <a class="navbar-brand d-flex align-items-center text-success" id="brand" href="#" >
                         <img src="../assets/logo-nobg.png" class="img-fluid logo-pic" />

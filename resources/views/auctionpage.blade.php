@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction Page</title>
-    <link rel="stylesheet" href="../stylings/listings.css" />
+    <link rel="stylesheet" href="../css/listings.css" />
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -163,65 +163,26 @@
         </p>
       </a>
     </div>
+
     <section
-      class="offered-produce container-fluid p-5 d-flex justify-content-center justify-content-lg-start"
-      id="offered"
-    >
-      <div
-        class="desktop-view flex-wrap d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start gap-5"
-      >
-        <div class="card" style="width: 18rem">
-          <img src="../assets/Ampalaya.jpeg" class="card-img-top" alt="" />
-          <div class="card-body">
-            <h5 class="card-title md-title">Farmer: Teddy</h5>
-            <div class="card-text">
-              <p class="fs-2">Price: 420</p>
-              <p class="fs-2">Volume: 12</p>
-              <p class="fs-2">Base Bid Price: 16</p>
-              <p class="fs-2 highlight-text">Latest Bid Price: 69</p>
-            </div>
-            <a href="BiddingPage.html" class="btn btn-success fs-1 w-50">Bid</a>
+      class="offered-produce container-fluid p-5 d-flex justify-content-center justify-content-lg-start" id="offered">
+      <div class="desktop-view flex-wrap d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start gap-5">
+        @foreach($auctions as $auction)
+          <div class="card" style="width: 18rem">
+                <img src="../assets/Ampalaya.jpeg" class="card-img-top" alt="" />
+                  <div class="card-body">
+                        <h5 class="card-title md-title">Farmer: {{$auction->auction_id}}</h5>
+                          <div class="card-text">
+                            <!-- <p class="fs-2">Price: {{$auction->auction_id}}</p> -->
+                            <p class="fs-2">Volume: 12</p>
+                            <p class="fs-2">Base Bid Price: {{$auction->starting_price}}</p>
+                            <p class="fs-2 highlight-text">Latest Bid Price: 69</p>
+                          </div>
+                        <a href="{{ url('send-bid') }}?auction_id={{$auction->auction_id}}" class="btn btn-success fs-1 w-50">Bid</a>
+                  </div>
           </div>
-        </div>
-        <div class="card" style="width: 18rem">
-          <img src="../assets/Ampalaya.jpeg" class="card-img-top" alt="" />
-          <div class="card-body">
-            <h5 class="card-title md-title">Farmer: Teddy</h5>
-            <div class="card-text">
-              <p class="fs-2">Price: 420</p>
-              <p class="fs-2">Volume: 12</p>
-              <p class="fs-2">Base Bid Price: 16</p>
-              <p class="fs-2 highlight-text">Latest Bid Price: 69</p>
-            </div>
-            <a href="BiddingPage.html" class="btn btn-success fs-1 w-50">Bid</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem">
-          <img src="../assets/Ampalaya.jpeg" class="card-img-top" alt="" />
-          <div class="card-body">
-            <h5 class="card-title md-title">Farmer: Teddy</h5>
-            <div class="card-text">
-              <p class="fs-2">Price: 420</p>
-              <p class="fs-2">Volume: 12</p>
-              <p class="fs-2">Base Bid Price: 16</p>
-              <p class="fs-2 highlight-text">Latest Bid Price: 69</p>
-            </div>
-            <a href="BiddingPage.html" class="btn btn-success fs-1 w-50">Bid</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem">
-          <img src="../assets/Ampalaya.jpeg" class="card-img-top" alt="" />
-          <div class="card-body">
-            <h5 class="card-title md-title">Farmer: Teddy</h5>
-            <div class="card-text">
-              <p class="fs-2">Price: 420</p>
-              <p class="fs-2">Volume: 12</p>
-              <p class="fs-2">Base Bid Price: 16</p>
-              <p class="fs-2 highlight-text">Latest Bid Price: 69</p>
-            </div>
-            <a href="BiddingPage.html" class="btn btn-success fs-1 w-50">Bid</a>
-          </div>
-        </div>
+        @endforeach
+  
       </div>
     </section>
   </body>

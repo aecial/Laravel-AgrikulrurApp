@@ -3,7 +3,9 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "preview": "vite preview",
+        "host": "vite --host"
     },
     "devDependencies": {
         "axios": "^1.1.2",
@@ -13,5 +15,9 @@
     "dependencies": {
         "laravel-echo": "^1.15.2",
         "pusher-js": "^8.3.0"
+    },
+    "server": {
+        "host": true
     }
 }
+

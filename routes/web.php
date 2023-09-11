@@ -59,6 +59,8 @@ Route::get('/send-bid' ,[MessageController::class , 'sendBid']);
 Route::get('/addcrop' ,[CropsController::class , 'addcrop']);
 Route::post('/newCrop' ,[CropsController::class , 'newCrop'])->name('newCrop');
 
+Route::get('/auctions' ,[AuctionsControll::class , 'auctions']);
+
 
 /*Route::get('/playground', function () {
     event(new App\Events\ChatMessageEvent());
@@ -79,6 +81,3 @@ Route::post('/chat-message', function (\Illuminate\Http\Request $request) {
 //Route::post('/chat-message', [testMessageControl::class, 'testMessage']);
 //Route::get('/chat-message', [testMessageControl::class, 'testMessage']);
 
-//hello
-//hello2
-//hello3

@@ -29,4 +29,10 @@ class AuctionsControll extends Controller
         ]);
         return back()->with('status', 'New Auction has been added');
     }
+    public function auctions(Request $request)
+    {
+        $type = $request->input('type');
+        $auctions = auctions::where('crop_id', $type)->get();
+        return view('auctionpage', compact('auctions'));
+    }
 }

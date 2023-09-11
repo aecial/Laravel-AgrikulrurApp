@@ -217,7 +217,7 @@
                 <img class="card-img-top" src="../assets/Kalabasa.jpg" alt="Card image cap"/>
                 <div class="card-body">
                   <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
-                  <a href="Kalabasa.html" class="btn btn-success">View Auctions</a>
+                  <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
                 </div>
               </div>
             </div>
@@ -235,7 +235,7 @@
                 <img src="../assets/Ampalaya.jpeg" class="card-img-top" alt="" />
                 <div class="card-body">
                   <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
-                  <a href="{{$crop->crop_name}}" class="btn btn-success">View Auctions</a>
+                  <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
                 </div>
               </div>
             </div>
