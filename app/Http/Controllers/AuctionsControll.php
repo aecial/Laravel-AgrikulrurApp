@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\auctions;
+use App\Models\crops;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
@@ -34,5 +35,14 @@ class AuctionsControll extends Controller
         $type = $request->input('type');
         $auctions = auctions::where('crop_id', $type)->get();
         return view('auctionpage', compact('auctions'));
+    }
+    public function guidelines()
+    {
+        $cropinfo = crops::all();
+        return view('guidelines', compact('cropinfo'));
+    }
+    public function notifications()
+    {
+        return view('notifications');
     }
 }

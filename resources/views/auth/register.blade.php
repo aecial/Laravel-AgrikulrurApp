@@ -1,24 +1,26 @@
-@extends('layouts.app')
-
-@section('content')
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/SignUp.css" />
+    <!-- Boostrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
 <main class="container-md my-auto bg-body-tertiary pb-3 pt-5">
-
-                <link rel="stylesheet" href="../css/SignUp.css" />
-                <!-- Boostrap CSS -->
-                <link
-                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-                rel="stylesheet"
-                integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-                crossorigin="anonymous"
-                />
-                <script
-                defer
-                src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-                crossorigin="anonymous"
-                ></script>
-
     <div class="row row-cols-2">
         <!--Image Container-->
         <div class="col mt-auto d-none d-lg-block my-auto">
@@ -276,15 +278,16 @@
                     </div>
                 </div>
                 <small
-                >Already have an account? <a href="Login.html">Log In</a></small
+                >Already have an account? <a href="{{ route('login') }}">Log In</a></small
                 >
             </div>
         <!--Form Container-->
     </div>
     <script src="../js/signUp.js"></script>
 </main>
+</body>
+</html>
 <!--Main Div-->
-@endsection
 <!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -1,9 +1,10 @@
-@extends('layouts.app')
-
-@section('content')
-
-
-<link rel="stylesheet" href="../css/Login.css" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/Login.css" />
     <!-- Boostrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -17,7 +18,8 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-
+  </head>
+  <body>
     <main class="container bg-body-tertiary p-5 login_cont">
       <!--Image Container-->
       <div class="row">
@@ -93,7 +95,8 @@
       </div>
       <script src="../index.js"></script>
     </main>
-@endsection
+</body>
+</html>
 <!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

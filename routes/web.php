@@ -61,6 +61,9 @@ Route::post('/newCrop' ,[CropsController::class , 'newCrop'])->name('newCrop');
 
 Route::get('/auctions' ,[AuctionsControll::class , 'auctions']);
 
+Route::get('/guidelines' ,[AuctionsControll::class , 'guidelines']);
+Route::get('/notifications' ,[AuctionsControll::class , 'notifications']);
+
 
 /*Route::get('/playground', function () {
     event(new App\Events\ChatMessageEvent());
