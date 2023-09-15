@@ -53,7 +53,7 @@ Route::get('/crop-options', [App\Http\Controllers\HomeController::class, 'cropOp
 Route::get('/create_auction' ,[AuctionsControll::class , 'create_auction']);
 Route::post('/newAuction' ,[AuctionsControll::class , 'newAuction'])->name('newAuction');
 
-Route::get('/send-message' ,[MessageController::class , 'sendMessage']);
+Route::post('/send-message' ,[MessageController::class , 'sendMessage']);
 Route::get('/send-bid' ,[MessageController::class , 'sendBid']);
 
 Route::get('/addcrop' ,[CropsController::class , 'addcrop']);

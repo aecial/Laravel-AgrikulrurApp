@@ -44,7 +44,7 @@
           <div
             class="row bg-light border-bottom border-black h-50 d-flex flex-lg-column justify-content-center align-items-center p-4"
           >
-            <img src="../assets/sitaw.jpg" alt="" class="mb-2" id="bid-image" />
+            <img src="../assets/Sitaw.jpeg" alt="" class="mb-2" id="bid-image" />
           </div>
           <div class="row bg-light row-cols-2 p-2">
             <div class="col border-end border-black">
@@ -248,7 +248,7 @@
               </div>
               <div class="web-img-cont bg-danger-subtle overflow-hidden mb-2">
                 <img
-                  src="../assets/sigarilyas.jpg"
+                  src="../assets/Sigarilyas.jpeg"
                   alt=""
                   id="web-img"
                   class="w-100 h-100 object-fit-cover"
@@ -381,7 +381,15 @@
                     </table>
                   </div>
                 </div>
+                @if(Session::has('success'))
+                  <div class="alert alert-success">{{Session::get('success')}}</div>
+                @endif
+                @if(Session::has('failed'))
+                  <div class="alert alert-danger">{{Session::get('failed')}}</div>
+                @endif
                 <div class="w-100 px-5 d-flex flex-column gap-2 mt-5">
+                  <!-- <form id="form_data" method="POST" enctype="multipart/form-data" onsubmit="pushBid(event)"> 
+                    @csrf-->
                   <input
                     type="number"
                     name="desktop"
@@ -397,6 +405,7 @@
                   ><!-- onclick="lezgo2()" -->
                     Bid
                   </button>
+                  <!-- </form> -->
                 </div>
               </div>
             </div>
@@ -408,16 +417,17 @@
       $(document).ready(function() {
 
         //para sa Web toh par
-
-            $('#bid-btn2').click(function() {
+           
+             $('#bid-btn2').click(function() {
                 var message = $('#inPriceDesk').val();
                 if (message.trim() !== '') {
                     // AJAX request to send the message to the server
                     $.ajax({
-                        method: 'GET',
+                        method: 'POST',
                         url: '/send-message', // Replace with your route
                         data: 
                         { 
+                          _token: '{{ csrf_token() }}',
                           message: message,
                           channel: @foreach($auctions as $auction){{ $auction->auction_id }}@endforeach,
                           bidder: {{ Auth::user()['id'] }},
@@ -514,6 +524,32 @@
         //btn2.disabled = true;
 
     });
+    /*
+     function pushBid(e){
+              e.preventDefault();
+              console.log($('#form_data'));
+              var bid = $('#form_data')[0];
+              var bidFormData = new FormData(bid);
+
+              //$('.formErrors').html('');
+              $.ajax({
+                method:"POST",
+                url:"{{ url('send-message')}}",
+                data:bidFormData,
+                processData:false,
+                contentType:false,
+                success:function(response){
+                },
+                error:function(error){
+                  var formErr = error.responseJSON.errors;
+                  console.log(error);
+                  for(var err in forErr){
+                    $('.'+ err + '_err').html(formErr[err][0]);
+                  }
+                }
+              })
+            }
+          */
     @endforeach
 </script>
       <!-- <script src="../js/biddings.js"></script> -->

@@ -50,12 +50,14 @@
                       <option value="null" class="bg-body-tertiary" selected disabled>
                         Choose a Crop Type
                       </option>
-
-                      <option value="1" class="bg-success text-light">
-                        Ampalaya
+                      @foreach($crops as $crop)
+                      <option value="{{$crop->crop_id}}" class="bg-success text-light">
+                        {{$crop->crop_name}}
                       </option>
+                      @endforeach
 
-                      <option value="2" class="bg-success text-light">
+                      <!-- 
+                      <option value="2" class="bg-success text-light"> 
                         Kalabasa
                       </option>
 
@@ -74,6 +76,7 @@
                       <option value="6" class="bg-success text-light">
                         Sitaw
                       </option>
+                      -->
 
                 </select>
                 <!--Select Input-->

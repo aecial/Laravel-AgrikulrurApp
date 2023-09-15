@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\auctions;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Events\NewMessageEvent;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ class MessageController extends Controller
         
 public function sendMessage(Request $request)
     {
+
         $message = $request->input('message');
         $channel = $request->input('channel');
         $bidder = $request->input('bidder');
@@ -123,5 +125,59 @@ public function sendBid()
         return view('bidding', compact('bids'));
     }
 }
+
+*/
+
+/*
+        try{
+
+                //dd($request->all());
+                $res = $request->validate([
+                    'message'=>'required|string|max:255',
+                    'channel'=>'required',
+                    'bidder'=>'required'
+                ]);
+
+                if($res){
+                        $message = $request->input('message');
+                        $channel = $request->input('channel');
+                        $bidder = $request->input('bidder');
+                        $user = Auth::user();
+
+                        // Process the message, perform any validations, database operations, etc.
+
+                        // Broadcast the event
+                        //NewMessageEvent::dispatch($messages);
+                            $bids = bids::create(
+                            [
+                            'bid_amount' => $message,
+                            'user_id' => $user['id'],
+                            'auction_id' => $channel,
+                            'crop_type' => "Okra",
+                            ],
+                        );
+                        
+                if($bids)
+                {
+                    event(new NewMessageEvent($request->message, $request->channel, $request->bidder));
+                    return   response()->json([$request->message => true]);
+                                //response()->json([$request->message => true])            
+                }
+                else
+                {
+                    return back()->with('failed', 'Failed to register T-T. Something went wrong');
+                }
+
+                }
+                
+                
+
+        }
+        catch(QueryException $e) {
+            // Log the error for debugging purposes
+            \Log::error($e->getMessage());
+    
+            return response()->json(['success' => false, 'message' => 'Error saving data']);
+        }
 
 */
