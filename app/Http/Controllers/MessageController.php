@@ -9,9 +9,34 @@ use App\Events\NewMessageEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\bids;
+use App\Services\ValidationService; // Import the ValidationService
 
 class MessageController extends Controller
 {
+    protected $validationService;
+
+    public function __construct(ValidationService $validationService)
+    {
+        $this->validationService = $validationService;
+    }
+
+    public function showForm()
+    {
+        return view('message-form');
+    }
+
+    public function process(Request $request)
+    {
+        $validatedData = $this->validationService->validateMessage($request->all());
+
+        // If validation passes, you can continue processing the message
+        $message = $validatedData['message'];
+
+        // Process the message (e.g., save it to the database or perform other tasks)
+        // You can also return a response or redirect the user to another page
+
+        return "Message processed: " . $message;
+    }
         
 public function sendMessage(Request $request)
     {
