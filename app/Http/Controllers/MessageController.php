@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\bids;
 use App\Services\ValidationService; // Import the ValidationService
 
+
 class MessageController extends Controller
 {
     protected $validationService;
