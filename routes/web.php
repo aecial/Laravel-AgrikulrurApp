@@ -63,6 +63,9 @@ Route::get('/auctions' ,[AuctionsControll::class , 'auctions']);
 
 Route::get('/guidelines' ,[AuctionsControll::class , 'guidelines']);
 Route::get('/notifications' ,[AuctionsControll::class , 'notifications']);
+Route::get('/congratulation' ,[AuctionsControll::class , 'congratulation']);
+Route::get('/checkout' ,[AuctionsControll::class , 'checkout']);
+Route::get('/finish' ,[AuctionsControll::class , 'finish']);
 
 
 /*Route::get('/playground', function () {
@@ -84,3 +87,7 @@ Route::post('/chat-message', function (\Illuminate\Http\Request $request) {
 //Route::post('/chat-message', [testMessageControl::class, 'testMessage']);
 //Route::get('/chat-message', [testMessageControl::class, 'testMessage']);
 
+//testing routes
+
+Route::get('/message-form', [MessageController::class , 'showForm']);//not needed, siguro hahaha
+Route::post('/process-message', [MessageController::class , 'process'])->name('process.message');
