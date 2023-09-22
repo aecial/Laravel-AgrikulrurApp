@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\auctions;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Events\NewMessageEvent;
@@ -14,34 +15,55 @@ use App\Services\ValidationService; // Import the ValidationService
 
 class MessageController extends Controller
 {
-    protected $validationService;
 
-    public function __construct(ValidationService $validationService)
-    {
-        $this->validationService = $validationService;
-    }
-
-    public function showForm()
-    {
-        return view('message-form');
-    }
-
-    public function process(Request $request)
-    {
-        $validatedData = $this->validationService->validateMessage($request->all());
-
-        // If validation passes, you can continue processing the message
-        $message = $validatedData['message'];
-
-        // Process the message (e.g., save it to the database or perform other tasks)
-        // You can also return a response or redirect the user to another page
-
-        return "Message processed: " . $message;
-    }
-        
 public function sendMessage(Request $request)
     {
+        $requestData = $request->all();
 
+        $website_info = bids::where([
+            ['bid_amount', '=' ,$request->input('message')],
+            ['auction_id', '=', $request->input('channel')]
+        ])->first();
+
+        if ($website_info != null) {
+            return response()->json(['failed']);
+        } else {
+            
+            $message = $request->input('message');
+            $channel = $request->input('channel');
+            $bidder = $request->input('bidder');
+            $user = Auth::user();
+    
+            // Process the message, perform any validations, database operations, etc.
+    
+            // Broadcast the event
+            //NewMessageEvent::dispatch($messages);
+                $bids = bids::create(
+                [
+                'bid_amount' => $message,
+                'user_id' => $user['id'],
+                'auction_id' => $channel,
+                'crop_type' => "Okra",
+                ],
+            );
+            //return ['status' => 'Message Sent!'];
+            if($bids)
+            {
+                event(new NewMessageEvent($message, $channel, $bidder));
+                return response()->json([$message => true]);
+            }
+            else
+            {
+                return response()->json(['Bid Not Sent' => true]);
+            }
+    
+
+            
+        }
+
+
+
+        /*
         $message = $request->input('message');
         $channel = $request->input('channel');
         $bidder = $request->input('bidder');
@@ -68,7 +90,7 @@ public function sendMessage(Request $request)
         else
         {
             return response()->json(['Message Not Sent' => true]);
-        }
+        }*/
     }
 public function sendBid(Request $request)
     {
@@ -83,6 +105,36 @@ public function sendBid(Request $request)
 
         return view('bidding', compact('bids','auctions', 'highestbid'));
     }
+    
+    //Testing Logic
+    protected $validationService;
+
+    public function __construct(ValidationService $validationService)
+    {
+        $this->validationService = $validationService;
+    }
+
+    public function showForm()
+    {
+        return view('message-form');
+    }
+
+    public function process(Request $request)
+    {
+        $validatedData = $this->validationService->validateMessage($request->all());
+
+        // If validation passes, you can continue processing the message
+        $message = $validatedData['message'];
+
+        // Process the message (e.g., save it to the database or perform other tasks)
+        // You can also return a response or redirect the user to another page
+
+        //return "Message processed: " . $message;
+        return response()->json([$message => true]);
+    }
+
+    //end testing logic
+        
 }
 
 /*

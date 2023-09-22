@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use Illuminate\Validation\Factory as Validator;
+use App\Models\messages;
 
 class ValidationService
 {
@@ -17,8 +18,12 @@ class ValidationService
     public function validateMessage(array $data)
     {
         return $this->validator->make($data, [
-            'message' => 'required|string|max:255',
+            'message' => 'required|integer|unique:messages',
         ])->validate();
+
+        if ($this->validator->fails()) {
+            return response()->json(['errors' => $this->validator->errors()], 422);
+        }
     }
 }
 

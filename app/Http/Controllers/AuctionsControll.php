@@ -29,9 +29,12 @@ class AuctionsControll extends Controller
             'starting_price' => $starting_price,
             'crop_volume' => $crop_volume,
             'user_id' => $user['id'],
+            'status' => 'active',
         ]);
         return back()->with('status', 'New Auction has been added');
     }
+
+
     public function auctions(Request $request)
     {
         $type = $request->input('type');
@@ -46,6 +49,18 @@ class AuctionsControll extends Controller
     public function notifications()
     {
         return view('notifications');
+    }
+    public function congratulation()
+    {
+        return view('congratulation');
+    }
+    public function checkout()
+    {
+        return view('checkout');
+    }
+    public function finish()
+    {
+        return view('finish');
     }
    /* public function registerUser(Request $request)
     {

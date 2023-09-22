@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('auctions', function (Blueprint $table) {
-            $table->id('auction_id');
-            $table->integer('crop_id')->references('crop_id')->on('crops')->unsigned();
-            $table->integer('starting_price');
-            $table->integer('crop_volume');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->id('notif_id');
             $table->integer('user_id')->references('id')->on('users')->unsigned();
-            $table->string('status');
-            $table->timestamp('end_time')->nullable();
+            $table->integer('auction_id')->references('auction_id')->on('auctions')->unsigned();
+            $table->string('crop_id');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('auctions');
+        Schema::dropIfExists('notifications');
     }
 };

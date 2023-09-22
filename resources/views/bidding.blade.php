@@ -190,9 +190,13 @@
             <div
               class="row cta-row d-flex justify-content-center mb-2 mt-2 mt-lg-5"
             >
+            <div id="validation-errors1"  role="alert">
+                      
+            </div> 
               <div
                 class="border border-black w-75 d-flex justify-content-center align-items-center p-2 gap-2"
               >
+              
                 <input
                   type="number"
                   class="form-control border-0 bg-transparent text-center"
@@ -390,6 +394,10 @@
                 <div class="w-100 px-5 d-flex flex-column gap-2 mt-5">
                   <!-- <form id="form_data" method="POST" enctype="multipart/form-data" onsubmit="pushBid(event)"> 
                     @csrf-->
+                  
+                    <div id="validation-errors2"  role="alert">
+                      
+                    </div> 
                   <input
                     type="number"
                     name="desktop"
@@ -434,7 +442,36 @@
                         },
                         success: function(response) {
                             // Handle success if needed
-                            console.log('Message sent successfully: ', response);
+                            console.log('Message Response: ', response);
+
+                            if (response == 'failed') {
+                                // Log or display validation errors
+
+
+                                const errors = response;
+
+                                // Clear any existing error messages
+                                const validationErrorsDiv = document.getElementById('validation-errors2');
+                                validationErrorsDiv.innerHTML = '';
+                                
+
+                                // Create and append error messages
+                                for (const field in errors) {
+                                    if (errors.hasOwnProperty(field)) {
+                                        //const errorMessages = errors[field].join('<br>'); or 
+                                        const errorMessages = errors.join('<br>'); // Combine multiple error messages for the field
+                                        const errorMessageElement = document.createElement('div');
+                                        errorMessageElement.classList.add("new");
+                                        errorMessageElement.innerHTML = `<div class="alert alert-danger"><h2>Please Provide Higher Bid</2></div>`;
+                                        validationErrorsDiv.appendChild(errorMessageElement);
+                                    }
+                                }
+
+                                
+
+                            } else {
+                                // Handle other errors
+                            }
                         },
                         error: function(xhr, status, error) {
                             // Handle error if needed
@@ -451,17 +488,47 @@
                 if (message.trim() !== '') {
                     // AJAX request to send the message to the server
                     $.ajax({
-                        method: 'GET',
+                        method: 'POST',
                         url: '/send-message', // Replace with your route
                         data: 
                         { 
+                          _token: '{{ csrf_token() }}',
                           message: message,
                           channel: @foreach($auctions as $auction){{ $auction->auction_id }}@endforeach,
                           bidder: {{ Auth::user()['id'] }},
                         },
                         success: function(response) {
                             // Handle success if needed
-                            console.log('Message sent successfully: ', response);
+                            console.log('Message Response: ', response);
+
+                            if (response == 'failed') {
+                                // Log or display validation errors
+
+
+                                const errors = response;
+
+                                // Clear any existing error messages
+                                const validationErrorsDiv = document.getElementById('validation-errors1');
+                                validationErrorsDiv.innerHTML = '';
+                                
+
+                                // Create and append error messages
+                                for (const field in errors) {
+                                    if (errors.hasOwnProperty(field)) {
+                                        //const errorMessages = errors[field].join('<br>'); or 
+                                        const errorMessages = errors.join('<br>'); // Combine multiple error messages for the field
+                                        const errorMessageElement = document.createElement('div');
+                                        errorMessageElement.classList.add("new");
+                                        errorMessageElement.innerHTML = `<div class="alert alert-danger"><h2>Please Provide Higher Bid</2></div>`;
+                                        validationErrorsDiv.appendChild(errorMessageElement);
+                                    }
+                                }
+
+                                
+
+                            } else {
+                                // Handle other errors
+                            }
                         },
                         error: function(xhr, status, error) {
                             // Handle error if needed
@@ -553,5 +620,5 @@
     @endforeach
 </script>
       <!-- <script src="../js/biddings.js"></script> -->
-    </main>
+</main>
 @endsection

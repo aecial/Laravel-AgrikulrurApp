@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Notifications</title>
+@extends('layouts.app')
+
+@section('content')
+  <title>Notifications</title>
     <link rel="stylesheet" href="../css/Notifications.css" />
     <!-- Boostrap CSS -->
     <link
@@ -35,122 +33,89 @@
       href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
       rel="stylesheet"
     />
+    @vite('resources/js/app.js')
     <!--Font Links-->
-  </head>
-  <body>
-    <!--Navigation Bar-->
-    <nav
-      class="navbar nav-underline sticky-lg-top navbar-expand-xxl bg-body-tertiary"
-    >
-      <div class="container-fluid">
-        <a
-          class="navbar-brand d-flex align-items-center text-success"
-          id="brand"
-          href="AuctionPage.html"
-          ><img src="../assets/logo-nobg.png" class="img-fluid logo-pic" />
-          <p class="title">Agrikultur'App</p></a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon fs-1"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul
-            class="navbar-nav ms-auto mb-2 mb-lg-0 text-end d-flex align-items-xxl-center"
-          >
-            <li class="nav-item me-2">
-              <a
-                class="nav-link active text-success"
-                id="nav-link"
-                aria-current="page"
-                href="AuctionPage.html"
-                ><i class="fa-solid fa-gavel"></i> Auction Page</a
-              >
-            </li>
-            <li class="nav-item d-block d-xxl-none">
-              <a
-                class="nav-link text-success"
-                href="Notifications.html"
-                id="nav-link"
-                ><i class="fa-solid fa-bell"></i> Notifications</a
-              >
-            </li>
-            <li class="nav-item me-2">
-              <a
-                class="nav-link text-success"
-                href="Guidelines.html"
-                id="nav-link"
-                ><i class="fa-solid fa-table"></i> Pricing Guidelines</a
-              >
-            </li>
-            <li class="nav-item">
-              <p class="desc text-end d-block d-xxl-none">
-                Logged In as:
-                <strong
-                  ><a
-                    href="Profile.html"
-                    class="nav-link text-success text-decoration-underline"
-                    >Teddy Pascual</a
-                  ></strong
-                >
-              </p>
-            </li>
+    <!-- <main class="container-fluid"> 
+              <div class="bids-table mt-2">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <-- <th scope="col"></th> ->
+                      <th scope="col">Result</th>
+                      <th scope="col">Auction ID</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody1">
+          
+                    <tr>
+                      <-- <td class="text-center"></td> ->
+                      <td>Win</td>
+                      <td>1</td>
+                      <td><a href="Checkout.html" class="btn btn-success fs-12 mx-3">View</a></td>
+                    </tr>
 
-            <li class="nav-item me-2">
-              <a
-                class="btn btn-success w-auto fs-3 d-block d-xxl-none float-end"
-                href="../pages/Login.html"
-                >Sign Out</a
-              >
-            </li>
-          </ul>
-          <div class="nav-pic d-none d-xxl-block btn-group dropdown">
-            <button
-              type="button"
-              class="btn dropdown-toggle d-flex align-items-center w-100 h-100"
-              id="dropdownMenuButton"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img
-                src="../assets/Teddy.jpg"
-                class="rounded-circle object-fit-fill"
-                width="100%"
-                height="100%"
-              />
-            </button>
-            <div
-              class="dropdown-menu fs-3"
-              id="dropdown-menu"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <a class="dropdown-item text-success" href="Profile.html"
-                ><i class="fa-solid fa-user"></i> Profile</a
-              >
-              <a class="dropdown-item text-success" href="Notifications.html"
-                ><i class="fa-solid fa-bell"></i> Notifications</a
-              >
-              <div class="dropdown-divider"></div>
-              <a class="btn btn-success w-100 fs-3" href="../pages/Login.html"
-                ><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a
-              >
-            </div>
-          </div>
+                    <tr>
+                      <-- <td class="text-center"></td> ->
+                      <td>Lose</td>
+                      <td>2</td>
+                      <td><a href="Checkout.html" class="btn btn-success fs-12 mx-3">View</a></td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>-->
+<!-- new here -->
+
+<main class="container">
+      <p class="title text-center">Notifications</p>
+      <!--START OF NOTIF-->
+      <!-- <div class="winning-template">
+        <div
+          class="d-flex flex-column justify-content-center align-items-center"
+        >
+          <img src="../assets/celebrate.svg" alt="" class="img-fluid" />
+          <p class="md-title">Congrats you won an Auction!</p>
         </div>
-      </div>
-    </nav>
-    <!--Navigation Bar-->
+        <p class="desc fw-bold">Hello Teddy,</p>
+        <p class="desc">
+          Congratulations on being the winning bidder! To claim your products,
+          please click the button below.
+        </p>
+        <a href="Checkout.html" class="btn btn-success fs-3 mx-3">Claim Here</a>
+      </div> -->
+      <table class="table table-striped table-bordered table-hover">
+        <thead></thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <a
+                href="Notifications.html"
+                class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
+              >
+                <img
+                  src="../assets/winner.svg"
+                  width="150px"
+                  height="150px"
+                  class="rounded-circle bg-white object-fit-fill"
+                />
+                <p class="md-title text-success">
+                  Congratulations! You won an auction!
+                </p>
+              </a>
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </main>
+
+    <!--Font Links->
     <main class="container bg-light">
       <p class="title">Notifications</p>
-      <!--START OF NOTIF-->
+      !--START OF NOTIF->
       <div class="winning-template">
         <div
           class="d-flex flex-column justify-content-center align-items-center"
@@ -165,6 +130,111 @@
         </p>
         <a href="Checkout.html" class="btn btn-success fs-3 mx-3">Claim Here</a>
       </div>
-    </main>
-  </body>
-</html>
+    </main>-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="module">//type="module" is important! do not remove it.
+    // Add your WebSocket event listener here
+    window.Echo.channel('notification').listen('.notifier.message', (data) => {
+        // Update UI with received message
+        let auction = data.auction;
+        let crop = data.crop;
+        let creator = data.creator;
+        
+        let inputPrice2 = data.message;
+        let bidder_id = data.bidder;
+
+        let row = document.createElement("tr");
+
+
+        let name = document.createElement("td");
+        name.innerHTML = `<a
+                            href="{{ url('congratulation')}}"
+                            class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
+                          >
+                                <img
+                                  src="../assets/` + crop +`.jpeg"
+                                  width="150px"
+                                  height="150px"
+                                  class="rounded-circle bg-white object-fit-fill"
+                                />
+                                <p class="md-title text-success">
+                                  Congratulations! You won an auction!` + crop +`
+                                </p>
+                          </a>`;
+        row.appendChild(name);
+        
+        /*let auct = document.createElement("td");
+        auct.innerText = auction;
+        row.appendChild(auct);
+
+        //const d = new Date();
+        let date = document.createElement("td");
+        date.innerHTML = '<a href="Checkout.html" class="btn btn-success fs-12 mx-3">View</a>';
+        row.appendChild(date);*/
+
+        $("tbody").prepend(row);
+
+
+    });
+    /*
+     function pushBid(e){
+              e.preventDefault();
+              console.log($('#form_data'));
+              var bid = $('#form_data')[0];
+              var bidFormData = new FormData(bid);
+
+              //$('.formErrors').html('');
+              $.ajax({
+                method:"POST",
+                url:"{{ url('send-message')}}",
+                data:bidFormData,
+                processData:false,
+                contentType:false,
+                success:function(response){
+                },
+                error:function(error){
+                  var formErr = error.responseJSON.errors;
+                  console.log(error);
+                  for(var err in forErr){
+                    $('.'+ err + '_err').html(formErr[err][0]);
+                  }
+                }
+              })
+            }
+
+            //test1
+
+                <script type="module">//type="module" is important! do not remove it.
+    // Add your WebSocket event listener here
+    window.Echo.channel('notification').listen('.notifier.message', (data) => {
+
+      console.log(data.auction);
+        // Update UI with received message
+        let auction = data.auction;
+        let crop = data.crop;
+        let creator = data.creator;
+
+        let row = document.createElement("tr");
+
+
+        let auctiontd = document.createElement("td");
+        auctiontd.innerText = auction;
+        row.appendChild(auctiontd);
+        
+        let croptd = document.createElement("td");
+        croptd.innerText = crop;
+        row.appendChild(croptd);
+
+        let creatortd = document.createElement("td");
+        creatortd.innerText = creator;
+        row.appendChild(creatortd);
+
+        $("tbody").prepend(row);
+    });*/
+
+</script>
+          
+</script>
+</main>
+@endsection
