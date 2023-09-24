@@ -36,22 +36,27 @@ Artisan::command('fetch:auctions', function () {
         
         if($auction->end_time <= $now)
         {
-            notifications::create([
-                'user_id' => $auction->user_id,
-                'auction_id' => $auction->auction_id,
-                'crop_id' => $auction->crop_id
-            ]);
             auctions::where('end_time', '<=', $now)->update(['status' => 'closed']);
 
             $thesebids = bids::where('auction_id', $auction->auction_id)->get();
             
             foreach($thesebids as $bid)
             {
-                event(new notifier(2, $bid->bid_amount, 2));
-            }
+                $auction_id = $auction->auction_id;
+                $crop_id = $auction->crop_id;
+                $creator_id = $auction->user_id;
+                $bidder_id =  $bid->user_id;
 
-           
-            
+                notifications::create([
+                    'auction_id' => $auction_id,
+                    'crop_id' => $crop_id,
+                    'creator_id' => $creator_id,
+                    'bidder_id' => $bidder_id,
+                ]);
+
+                event(new notifier($auction_id, $crop_id, $creator_id, $bidder_id ));
+            }
+              
         }
 
     }

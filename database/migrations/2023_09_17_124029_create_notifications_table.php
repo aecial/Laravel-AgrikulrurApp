@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id('notif_id');
-            $table->integer('user_id')->references('id')->on('users')->unsigned();
             $table->integer('auction_id')->references('auction_id')->on('auctions')->unsigned();
             $table->string('crop_id');
+            $table->integer('creator_id')->references('id')->on('users')->unsigned();
+            $table->integer('bidder_id')->references('id')->on('users')->unsigned();
             $table->timestamps();
         });
     }

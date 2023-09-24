@@ -87,11 +87,11 @@
       <table class="table table-striped table-bordered table-hover">
         <thead></thead>
         <tbody>
-
+         @foreach($notif as $notify)
           <tr>
             <td>
               <a
-                href="Notifications.html"
+                href="{{ url('congratulation')}}?id={{ Auth::user()->id }}"
                 class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
               >
                 <img
@@ -106,8 +106,7 @@
               </a>
             </td>
           </tr>
-
-
+          @endforeach
         </tbody>
       </table>
     </main>
@@ -135,13 +134,11 @@
 
 <script type="module">//type="module" is important! do not remove it.
     // Add your WebSocket event listener here
-    window.Echo.channel('notification').listen('.notifier.message', (data) => {
+    window.Echo.channel('notification{{ Auth::user()->id }}').listen('.notifier.message', (data) => {
         // Update UI with received message
         let auction = data.auction;
         let crop = data.crop;
         let creator = data.creator;
-        
-        let inputPrice2 = data.message;
         let bidder_id = data.bidder;
 
         let row = document.createElement("tr");
@@ -149,7 +146,7 @@
 
         let name = document.createElement("td");
         name.innerHTML = `<a
-                            href="{{ url('congratulation')}}"
+                            href="{{ url('congratulation')}}?id={{ Auth::user()->id }}"
                             class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
                           >
                                 <img

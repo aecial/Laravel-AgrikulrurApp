@@ -20,13 +20,13 @@ class notifier implements ShouldBroadcast
     public $auction_id;
     public $crop_id;
     public $creator_id;
-    //public $toUser;
-    public function __construct($auction_id, $crop_id, $creator_id)
+    public $bidder_id;
+    public function __construct($auction_id, $crop_id, $creator_id, $bidder_id)
     {
         $this->auction_id = $auction_id;
         $this->crop_id = $crop_id;
         $this->creator_id = $creator_id;
-        //$this->toUser = $toUser;
+        $this->bidder_id = $bidder_id;
     }
 
     /**
@@ -43,14 +43,14 @@ class notifier implements ShouldBroadcast
         return [
             'auction' => $this->auction_id,
             'crop' => $this->crop_id,
-            'creator' => $this->creator_id
-            //'user' => auth()->user()->name,
+            'creator' => $this->creator_id,
+            'user_id' => $this->bidder_id
         ];
     }
         public function broadcastOn():array
     {
         return [
-            new Channel('notification'),
+            new Channel('notification'.$this->bidder_id),
         ];
     }
 }

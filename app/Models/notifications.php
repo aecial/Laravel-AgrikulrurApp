@@ -11,5 +11,5 @@ class notifications extends Model
 
     protected $table = 'notifications';
 
-    protected $fillable = [ 'user_id', 'auction_id', 'crop_id'];
+    protected $fillable = ['auction_id', 'crop_id', 'creator_id', 'bidder_id'];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\auctions;
 use App\Models\crops;
+use App\Models\notifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
@@ -46,9 +47,11 @@ class AuctionsControll extends Controller
         $cropinfo = crops::all();
         return view('guidelines', compact('cropinfo'));
     }
-    public function notifications()
+    public function notifications(Request $request)
     {
-        return view('notifications');
+        $toUser = $request->input('id');
+        $notif = notifications::where('bidder_id', $toUser)->get();
+        return view('notifications', compact('notif'));
     }
     public function congratulation()
     {
