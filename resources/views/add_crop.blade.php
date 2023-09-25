@@ -35,7 +35,7 @@
     />
     <!--Font Links-->
     
-    <p  class=" text-success">Add Crops</p>
+    <p  class=" text-success text-center title">Add Crops</p>
     <!--Create Form Section-->
     <section class="container-fluid create-form-section">
       <div class="container-fluid">
