@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <title>Auction Page</title>
+  <title>Supply Auction Page</title>
     <!--Custom CSS Tag-->
     <link rel="stylesheet" href="../css/auction.css" />
     <!--Custom CSS Tag-->
@@ -44,9 +44,24 @@
 
     <!--Titles-->
     <p class="title text-center mt-5 mb-5">
-      Welcome to the <span class="text-success">Auction Page</span>
+      Welcome to the <span class="text-success">Supply Auction Page</span>
     </p>
-    <p class="md-title text-start mx-4">Offered Produce Auctions</p>
+    <div class="d-flex justify-content-between">
+      <p class="md-title text-start mx-4">Offered Produce Auctions</p>
+      <div class="d-flex align-items-center">
+        <a
+          href="AuctionPage.html"
+          class="md-title text-start mx-4 text-decoration-none text-success"
+          >Supply</a
+        >
+        <p class="md-title text-start mx-4">|</p>
+        <a
+          href="DemandAuctionPage.html"
+          class="md-title text-start mx-4 text-decoration-none text-dark"
+          >Demand</a
+        >
+      </div>
+    </div>
     <!--Titles-->
 
     <!--Offered Produce Section-->
@@ -58,73 +73,24 @@
       </div>
       <!--2 Arrows Div-->
 
-      <!--Mobile View-->
-      <div class="d-block d-xxl-none">
-        <!--Mobile Pill Navigation-->
-        <ul
-          class="nav crop-type-selection justify-content-center nav-pills mb-3 fs-3 text-success"
-          id="pills-tab"
-          role="tablist"
-        >
-        
-          
-      
-          @foreach($crops as $crop)
-            <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="pills-kalabasa-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-{{$crop->crop_id}}"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-{{$crop->crop_id}}"
-                  aria-selected="false"
-                >
-              {{$crop->crop_name}}
-              </button>
-            </li>
-          @endforeach
-
-
-        </ul>
-        <!--Mobile Pill Navigation-->
-
-        <!--Mobile Pill Content-->
-        <div
-          class="tab-content d-flex justify-content-center"
-          id="pills-tabContent"
-        >
-
-
-          @foreach($crops as $crop)
-            <div class="tab-pane fade" id="pills-{{$crop->crop_id}}" role="tabpanel"  aria-labelledby="pills-{{$crop->crop_id}}-tab" tabindex="0">
-              <div class="card" style="width: 30rem">
-                <img class="card-img-top" src="../assets/Kalabasa.jpg" alt="Card image cap"/>
-                <div class="card-body">
-                  <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
-                  <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
-                </div>
-              </div>
-            </div>
-          @endforeach
-        </div>
-        <!--Mobile Pill Content-->
-      </div>
-      <!--Mobile View-->
-
       <!--Desktop View-->
-      <div class="row row-cols-5 row-gap-5 d-none d-xxl-flex">
+      <div
+          class="row row-cols-1 row-cols-xl-6 row-cols-lg-4 row-gap-4 column-gap-0 d-flex"
+        >
         @foreach($crops as $crop)
-            <div class="col">
-              <div class="card">
-                <img src="../assets/Ampalaya.jpeg" class="card-img-top" alt="" />
-                <div class="card-body">
-                  <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
-                  <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
-                </div>
+        <div class="col d-flex d-md-block justify-content-center">
+            <div class="card">
+              <img
+                src="../assets/Ampalaya.jpeg"
+                class="card-img-top"
+                alt="Ampalaya"
+              />
+              <div class="card-body">
+                <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
+                <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
               </div>
             </div>
+          </div>
         @endforeach
 <!--  
         <div class="col">
