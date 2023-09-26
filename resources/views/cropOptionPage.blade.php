@@ -65,20 +65,14 @@
     <!--Titles-->
 
     <!--Offered Produce Section-->
-    <section class="offered-produce container-fluid p-5" id="offered">
-      <!--2 Arrows Div-->
-      <div class="float-end d-lg-none text-light">
-        <i class="fa-solid fa-chevron-right"></i>
-        <i class="fa-solid fa-chevron-right"></i>
-      </div>
-      <!--2 Arrows Div-->
+    <section class="offered-produce container-fluid p-5 min-h-100vh" id="offered">
 
       <!--Desktop View-->
       <div
-          class="row row-cols-1 row-cols-xl-6 row-cols-lg-4 row-gap-4 column-gap-0 d-flex"
+          class="row row-cols-1 row-cols-xl-4 row-cols-md-2 row-cols-lg-3 row-gap-4 column-gap-0 d-flex"
         >
         @foreach($crops as $crop)
-        <div class="col d-flex d-md-block justify-content-center">
+        <div class="col d-flex justify-content-center align-items-center">
             <div class="card">
               <img
                 src="../assets/Ampalaya.jpeg"
@@ -92,6 +86,67 @@
             </div>
           </div>
         @endforeach
+        @foreach($crops as $crop)
+        <div class="col d-flex justify-content-center align-items-center">
+            <div class="card">
+              <img
+                src="../assets/Ampalaya.jpeg"
+                class="card-img-top"
+                alt="Ampalaya"
+              />
+              <div class="card-body">
+                <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
+                <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+        @foreach($crops as $crop)
+        <div class="col d-flex justify-content-center align-items-center">
+            <div class="card">
+              <img
+                src="../assets/Ampalaya.jpeg"
+                class="card-img-top"
+                alt="Ampalaya"
+              />
+              <div class="card-body">
+                <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
+                <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+        @foreach($crops as $crop)
+        <div class="col d-flex justify-content-center align-items-center">
+            <div class="card">
+              <img
+                src="../assets/Ampalaya.jpeg"
+                class="card-img-top"
+                alt="Ampalaya"
+              />
+              <div class="card-body">
+                <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
+                <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+        @foreach($crops as $crop)
+        <div class="col d-flex justify-content-center align-items-center">
+            <div class="card">
+              <img
+                src="../assets/Ampalaya.jpeg"
+                class="card-img-top"
+                alt="Ampalaya"
+              />
+              <div class="card-body">
+                <h5 class="card-title md-title">{{$crop->crop_name}}</h5>
+                <a href="{{ url('auctions') }}?type={{$crop->crop_id}}" class="btn btn-success">View Auctions</a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      
 <!--  
         <div class="col">
           <div class="card">
