@@ -35,13 +35,16 @@
     />
     <!--Font Links-->
     
-    <p  class=" text-success text-center title">Add Crops</p>
+    
     <!--Create Form Section-->
     <section class="container-fluid create-form-section">
       <div class="container-fluid">
         <div class="d-flex justify-content-center align-items-center">
           <div class="card mt-5 form-card">
             <div class="card-body">
+            <h1 class="title text-center text-light mt-5">
+                Add Crop
+              </h1>
               <form class="d-flex flex-column" id="createForm" action="{{ route('newCrop') }}" method="POST">
                 <!--Select Input-->
                 @csrf
