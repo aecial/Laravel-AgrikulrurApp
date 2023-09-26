@@ -35,13 +35,16 @@
     />
     <!--Font Links-->
     
-    <p  class=" text-success text-center title">Add Crops</p>
+    
     <!--Create Form Section-->
     <section class="container-fluid create-form-section">
       <div class="container-fluid">
         <div class="d-flex justify-content-center align-items-center">
           <div class="card mt-5 form-card">
             <div class="card-body">
+            <h1 class="title text-center text-light mt-5">
+                Add Crop
+              </h1>
               <form class="d-flex flex-column" id="createForm" action="{{ route('newCrop') }}" method="POST">
                 <!--Select Input-->
                 @csrf
@@ -53,7 +56,7 @@
                       name="crop_name"
                       id="crop_volume"
                       type="text"
-                      class="form-control fs-1 bg-transparent text-light"
+                      class="form-control cropTitle bg-transparent text-light"
                       placeholder="Crop Name"
                       aria-label="Volume"
                       required
@@ -63,20 +66,34 @@
 
                 <!--Suggested Price-->
                 <div class="input-group mb-3">
-                  <span id="peso-sign" class="input-group-text fs-1 bg-success text-light">₱</span>
+                  <span id="peso-sign" class="input-group-text cropTitle bg-success text-light">₱</span>
                       <input
                         onkeyup="btnDis()"
                         name="suggested_price"
                         id="crop_price"
                         type="number"
-                        class="form-control fs-1 bg-transparent text-light"
+                        class="form-control cropTitle bg-transparent text-light"
                         placeholder="Suggested Price"
                         aria-label="Price"
                         required
                       />
                 </div>
                 <!--Suggested Price-->
-
+                <!--Upload File -->
+                <label for="crop_picture" class="text-light md-title"
+                  >Upload Crop Picture:</label
+                >
+                <div class="input-group mb-3 bg-transparent">
+                  <input
+                    onkeyup="btnDis()"
+                    id="crop_picture"
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    class="form-control cropTitle bg-transparent text-light"
+                    placeholder="Picture"
+                    aria-label="Picture"
+                  />
+                </div>
                 <div class="d-flex justify-content-between mt-3">
                   <!--Utility Buttons-->
                   <a
