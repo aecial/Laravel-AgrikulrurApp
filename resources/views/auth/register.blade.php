@@ -153,11 +153,10 @@
                                     class="form-control"
                                     id="phone-number"
                                     required
-                                    name="phone-number"
+                                    name="phone"
                                     placeholder="Put Phone Number Here"
                                     onchange="phoneCheck()"
                                     value="{{ old('phone-number') }}"
-                                    disabled
                                     />
                                     <div class="invalid-feedback">Invalid Phone Number</div>
                                     <label for="phone-number">Phone Number</label>
