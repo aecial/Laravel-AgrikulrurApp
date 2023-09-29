@@ -105,7 +105,7 @@ public function sendBid(Request $request)
 
         if(!empty($highestbid->bid_amount))
         {
-            return view('bidding', compact('bids','auctions', 'highestbid'))->with('success');
+            return view('bidding', compact('bids','auctions', 'highestbid'))->with('success', 'highest bid fetched');
             
         }
         else

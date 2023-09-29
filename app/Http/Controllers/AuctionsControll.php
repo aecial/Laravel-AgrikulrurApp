@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bids;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\auctions;
@@ -78,9 +79,15 @@ class AuctionsControll extends Controller
         foreach($auctions as $auction)
         {
             $creator = $auction->user_id;
+            $cropname = $auction->crop_id;
             $users = User::where('id', $creator)->get();
+            $crops = crops::where('crop_id', $cropname)->get();
+            $highestbid = bids::where('auction_id', $auction->auction_id)->get('bid_amount')->max();
+            $volume =  $auction->crop_volume;
+            $highest = $highestbid->bid_amount;
+            $total = $highest * $volume;
 
-            return view('checkout', compact('auctions', 'users'));
+            return view('checkout', compact('auctions', 'users', 'crops', 'total'));
         }
         
     }

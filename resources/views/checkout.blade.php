@@ -107,10 +107,13 @@
               class="container-fluid p-5 d-flex flex-column justify-content-between h-75"
             >
               <div>
-                <p class="title mb-5">
-                  Auction Id:
-                  <span class="fw-bold" id="auction-id">123412312</span>
-                </p>
+              @foreach($auctions as $auction) 
+                  <p class="title mb-5">
+                    Auction Id:
+                    <span class="fw-bold" id="auction-id">{{$auction->auction_id}}</span>
+                  </p>
+              @endforeach
+                
                 <div
                   class="d-flex flex-column flex-lg-row justify-content-evenly align-items-center"
                 >
@@ -119,17 +122,20 @@
                     alt=""
                     style="width: 30rem"
                   />
-                  <p id="crop-type" class="fs-1 fw-bold mx-2">Ampalaya</p>
-                  <p class="fs-1 fw-semibold" id="volume">24kg</p>
+                  @foreach($crops as $crop)
+                  <p id="crop-type" class="fs-1 fw-bold mx-2">{{$crop->crop_name}}</p>
+                  @endforeach
+                  <p class="fs-1 fw-semibold" id="volume">{{$auction->crop_volume}}kg</p>
                 </div>
               </div>
               <div>
                 <div class="border-top">
                   <p class="title text-end">
                     Total:
-                    <span class="text-success" id="total">403424234</span>
+                    <span class="text-success" id="total">{{$total}}</span>
                   </p>
                 </div>
+                
                 <a
                   class="btn btn-success fs-1 w-100"
                   href="{{ url('finish')}}"
