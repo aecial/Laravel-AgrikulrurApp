@@ -82,7 +82,7 @@
                 type="text"
                 class="form-control"
                 id="name_inp"
-                placeholder="Teddy Pascual"
+                placeholder="{{ Auth::user()->name }}"
                 onchange="boom()"
                 disabled
               />
@@ -103,7 +103,7 @@
                 type="text"
                 class="form-control"
                 id="email_inp"
-                placeholder="kledted23@gmail.com"
+                placeholder="{{ Auth::user()->email }}"
                 onchange="boom()"
                 disabled
               />
@@ -124,7 +124,7 @@
                 type="text"
                 class="form-control"
                 id="address_inp"
-                placeholder="Capas,Tarlac"
+                placeholder="{{ Auth::user()->address }}"
                 onchange="boom()"
                 disabled
               />
@@ -145,7 +145,7 @@
                 type="text"
                 class="form-control"
                 id="mobileNum_inp"
-                placeholder="09982409945"
+                placeholder="{{ Auth::user()->phone }}"
                 onchange="boom()"
                 disabled
               />

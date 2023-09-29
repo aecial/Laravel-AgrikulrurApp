@@ -54,7 +54,16 @@ class AuctionsControll extends Controller
     {
         $toUser = $request->input('id');
         $notif = notifications::where('bidder_id', $toUser)->get();
-        return view('notifications', compact('notif'));
+        
+        if(!empty($toUser) && !empty($notif))
+        {
+            return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+        }
+        else
+        {
+            return view('notifications')->with('notNotify');
+        }
+       
     }
     public function congratulation(Request $request)
     {

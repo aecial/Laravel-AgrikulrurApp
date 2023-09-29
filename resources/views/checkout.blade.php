@@ -60,21 +60,27 @@
             <div
               class="d-flex flex-column justify-content-center mx-5 p-5 mb-lg-5"
             >
-            @foreach($auctions as $auction)
-              <p class="title text-light">Name: {{$auction->id}}</p>
-            @endforeach
-            @foreach(users as user)
-              <p class="title text-light">Gcash {{user->phone}}:</p>
-            @endforeach
+            <!-- @foreach($auctions as $auction) 
+              <p class="title text-light">Name: {{$auction->user_id}}</p>
+            @endforeach-->
+
+            @foreach($users as $user) 
+              <p class="title text-light">Name: {{$user->name}}</p>
+            @endforeach-
+
+            @foreach($users as $user)
+              <p class="title text-light">Gcash: {{$user->phone}}</p>
+           
               <div class="input-group mb-3 fs-1">
                 <input
                   type="text"
                   class="form-control fs-1"
-                  value="09982409945"
+                  value="{{$user->phone}}"
                   aria-describedby="basic-addon2"
                   readonly
                   id="num"
                 />
+                
                 <div class="input-group-append">
                   <button
                     class="btn btn-outline-light bg-transparent fs-1"
@@ -86,6 +92,7 @@
                   </button>
                 </div>
               </div>
+              @endforeach
             </div>
             <div class="container-fluid bg-light">
               <p class="title text-success">
