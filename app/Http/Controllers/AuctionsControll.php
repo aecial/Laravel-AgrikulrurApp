@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\auctions;
 use App\Models\crops;
 use App\Models\notifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Carbon\Carbon;
 
 class AuctionsControll extends Controller
 {
@@ -31,6 +33,7 @@ class AuctionsControll extends Controller
             'crop_volume' => $crop_volume,
             'user_id' => $user['id'],
             'status' => 'active',
+            'end_time' => Carbon::now()->addMinutes(2),
         ]);
         return back()->with('status', 'New Auction has been added');
     }
@@ -53,13 +56,24 @@ class AuctionsControll extends Controller
         $notif = notifications::where('bidder_id', $toUser)->get();
         return view('notifications', compact('notif'));
     }
-    public function congratulation()
+    public function congratulation(Request $request)
     {
-        return view('congratulation');
+        //$user = $request->input('id');
+        $auction_id = $request->input('auction_id');
+        return view('congratulation', compact('auction_id'));
     }
-    public function checkout()
+    public function checkout(Request $request)
     {
-        return view('checkout');
+        $auction_id = $request->input('auction_id');
+        $auctions = auctions::where('auction_id', $auction_id)->get();
+        foreach($auctions as $auction)
+        {
+            $creator = $auction->user_id;
+            $users = User::where('id', $creator)->get();
+
+            return view('checkout', compact('auctions', 'users'));
+        }
+        
     }
     public function finish()
     {

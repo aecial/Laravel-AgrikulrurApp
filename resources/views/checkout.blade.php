@@ -60,8 +60,12 @@
             <div
               class="d-flex flex-column justify-content-center mx-5 p-5 mb-lg-5"
             >
-              <p class="title text-light">Name: Teddy</p>
-              <p class="title text-light">Gcash Number:</p>
+            @foreach($auctions as $auction)
+              <p class="title text-light">Name: {{$auction->id}}</p>
+            @endforeach
+            @foreach(users as user)
+              <p class="title text-light">Gcash {{user->phone}}:</p>
+            @endforeach
               <div class="input-group mb-3 fs-1">
                 <input
                   type="text"

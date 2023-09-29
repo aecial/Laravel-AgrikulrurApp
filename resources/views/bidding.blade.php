@@ -77,10 +77,14 @@
                 @endforeach
               </div>
               <p class="mt-3">
-                Latest Bid Price:
-           
+                Latest Bid Price:              
 
-                  <span class="fw-bold" id="lbp">{{ $highestbid->bid_amount }}</span>
+                @if(Session::has('success'))
+                    <span class="fw-bold" id="lbp">{{ $highestbid->bid_amount }}</span>
+                @endif
+                @if(Session::has('failed'))
+                    <span class="fw-bold" id="lbp">{{Session::get('failed')}}</span>
+                @endif
 
               </p>
             </div>
@@ -271,7 +275,14 @@
 
                 <p class="desc">Latest Bid Price: 
                   
-                    <span id="lbp2">{{ $highestbid->bid_amount }}</span>
+                    
+                    @if(Session::has('success'))
+                      <span id="lbp2">{{ $highestbid->bid_amount }}</span>
+                    @endif
+                    @if(Session::has('failed'))
+                      <span id="lbp2">{{Session::get('failed')}}</span>
+                    @endif
+                    
               
                 </p>
 
@@ -279,7 +290,16 @@
             </div>
             <div class="col border border-2 border-tertiary-subtle pb-2">
               <p class="title text-center">Sigarilyas</p>
-              <p class="title text-success"><span id="lbp3">{{ $highestbid->bid_amount }}</span></p>
+
+                    
+              @if(Session::has('success'))
+                <p class="title text-success"><span id="lbp3">{{ $highestbid->bid_amount }}</span></p>
+              @endif
+              @if(Session::has('failed'))
+                <p class="title text-success"><span id="lbp3">{{Session::get('failed')}}</span></p>
+              @endif
+              
+
               @foreach($auctions as $auction)
                   <!-- <p class="fs-1 fw-bold mt-3">{{ $auction->created_at }}</p> -->
                   <p class="md-title">Bidding will end at: {{ $auction->created_at }}</p>
@@ -494,8 +514,8 @@
                         { 
                           _token: '{{ csrf_token() }}',
                           message: message,
-                          channel: @foreach($auctions as $auction){{ $auction->auction_id }}@endforeach,
-                          bidder: {{ Auth::user()['id'] }},
+                          channel: '@foreach($auctions as $auction){{ $auction->auction_id }}@endforeach',
+                          bidder: "{{ Auth::user()['id'] }}",
                         },
                         success: function(response) {
                             // Handle success if needed
@@ -573,7 +593,11 @@
 
         //const d = new Date();
         let date = document.createElement("td");
-        date.innerText = '{{ $bid->created_at }}';
+
+        @foreach($bids as $bid)
+        date.innerText =  '{{ $bid->created_at }}';
+        @endforeach
+
         row.appendChild(date);
 
         //tbody1.append(row);

@@ -91,7 +91,7 @@
           <tr>
             <td>
               <a
-                href="{{ url('congratulation')}}?id={{ Auth::user()->id }}"
+                href="{{ url('congratulation')}}?auction_id={{$notify->auction_id}}"
                 class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
               >
                 <img
@@ -146,7 +146,7 @@
 
         let name = document.createElement("td");
         name.innerHTML = `<a
-                            href="{{ url('congratulation')}}?id={{ Auth::user()->id }}"
+                            href="{{ url('congratulation')}}?auction_id={{$notify->auction_id}}"
                             class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
                           >
                                 <img

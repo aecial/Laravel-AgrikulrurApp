@@ -45,12 +45,12 @@
           <img src="../assets/celebrate.svg" alt="" class="img-fluid" />
           <p class="md-title">Congrats you won an Auction!</p>
         </div>
-        <p class="desc fw-bold">Hello Teddy,</p>
+        <p class="desc fw-bold">Hello {{ Auth::user()->name }},</p>
         <p class="desc">
           Congratulations on being the winning bidder! To claim your products,
           please click the button below.
         </p>
-        <a href="{{url('checkout')}}" class="btn btn-success fs-3 mx-3">Claim Here</a>
+        <a href="{{url('checkout')}}?auction_id={{$auction_id}}" class="btn btn-success fs-3 mx-3">Claim Here</a>
       </div>
     </main>
 @endsection

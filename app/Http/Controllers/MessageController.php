@@ -103,7 +103,17 @@ public function sendBid(Request $request)
         $highestbid = bids::where('auction_id', $on_auction)->get('bid_amount')->max();
         //$highestbid = DB::table('bids')->max('bid_amount');
 
-        return view('bidding', compact('bids','auctions', 'highestbid'));
+        if(!empty($highestbid->bid_amount))
+        {
+            return view('bidding', compact('bids','auctions', 'highestbid'))->with('success');
+            
+        }
+        else
+        {
+            return view('bidding', compact('bids','auctions', 'highestbid'))->with('failed', 'No bids Yet!');
+        }
+
+        
     }
     
     //Testing Logic
