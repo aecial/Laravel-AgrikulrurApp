@@ -27,7 +27,7 @@
     >
       <div class="container-fluid">
         <a
-          class="navbar-brand d-flex align-items-center text-success"
+          class="navbar-brand d-flex align-items-center "
           id="brand"
           href="#"
           ><img src="../assets/logo-nobg.png" class="img-fluid logo-pic" />
@@ -77,7 +77,7 @@
                 Logged In as:
                 <strong
                   ><a
-                    href="Profile.html"
+                    href="{{ url('profile') }}"
                     class="nav-link active text-success text-decoration-underline"
                     >{{ Auth::user()->name }}</a
                   ></strong
