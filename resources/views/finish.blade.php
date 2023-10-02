@@ -49,12 +49,15 @@
         <p class="desc">
           You can also call your farmer for more information and details.
         </p>
-        <p class="desc">Name: <span id="farmer">Farmer</span></p>
+        @foreach($users as $user)
+        <p class="desc">Name: <span id="farmer">{{ $user->name}}</span></p>
+        
         <p class="desc">
-          <a class="phone-number text-black" href="tel:09982409945">
-            <i class="fa-sharp fa-solid fa-phone fa-lg"></i>09982409945
+          <a class="phone-number text-black" href="tel:{{$user->phone}}">
+            <i class="fa-sharp fa-solid fa-phone fa-lg"></i>{{$user->phone}}
           </a>
         </p>
+        @endforeach
         <div class="d-flex justify-content-center">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2719.087656928917!2d120.55283210303548!3d15.464483065501089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396c764aaba063b%3A0xd4cc49e2baa01e29!2sFarm!5e0!3m2!1sfil!2sph!4v1688601261105!5m2!1sfil!2sph"

@@ -197,8 +197,13 @@
             <div id="validation-errors1"  role="alert">
                       
             </div> 
-              <div
-                class="border border-black w-75 d-flex justify-content-center align-items-center p-2 gap-2"
+
+
+            @if($auction->status == 'closed')
+              <div class="alert alert-success w-100 h-100 text-center fs-3">This auction is completed!</div>
+            @elseif($auction->status == 'active')
+            <div
+                class="border border-black w-75 d-flex justify-content-center align-items-center p-2 gap-2" id="bid-div"
               >
               
                 <input
@@ -211,10 +216,15 @@
                 <button
                   class="btn btn-success"
                   id="bid-btn"
+                  
                 ><!-- onclick="lezgo()" -->
                   Bid
                 </button>
               </div>
+
+            @endif
+
+             
             </div>
             <p class="fs-5 fw-light text-center text-secondary">
             Auction Id:
@@ -411,29 +421,38 @@
                 @if(Session::has('failed'))
                   <div class="alert alert-danger">{{Session::get('failed')}}</div>
                 @endif
-                <div class="w-100 px-5 d-flex flex-column gap-2 mt-5">
+                <div class="w-100 px-5 d-flex flex-column gap-2 mt-5" id="bid-div-desk">
                   <!-- <form id="form_data" method="POST" enctype="multipart/form-data" onsubmit="pushBid(event)"> 
                     @csrf-->
                   
                     <div id="validation-errors2"  role="alert">
                       
-                    </div> 
-                  <input
-                    type="number"
-                    name="desktop"
-                    id="inPriceDesk"
-                    class="form-control border-black text-center fs-1"
+                    </div>
+
+                        @if($auction->status == 'closed')
+                          <div class="alert alert-success w-100 h-100 text-center fs-3">This auction is completed!</div>
+                        @elseif($auction->status == 'active')
+                            <input
+                            type="number"
+                            name="desktop"
+                            id="inPriceDesk"
+                            class="form-control border-black text-center fs-1"
+                            
+                          /><!--onkeyup="al2()" -->
+                          <button
+                            type="submit"
+                            id="bid-btn2"
+                            class="w-100 btn btn-success fs-1"
+                            
+                          ><!-- onclick="lezgo2()"-->
+                            Bid
+                          </button>
+                          <!-- </form> -->
+
+                        @endif
                     
-                  /><!-- onkeyup="al2()" -->
-                  <button
-                    type="submit"
-                    id="bid-btn2"
-                    class="w-100 btn btn-success fs-1"
-                    
-                  ><!-- onclick="lezgo2()" -->
-                    Bid
-                  </button>
-                  <!-- </form> -->
+                   
+                 
                 </div>
               </div>
             </div>
@@ -643,6 +662,47 @@
           */
     @endforeach
 </script>
+<script type="module">//type="module" is important! do not remove it.
+    // Add your WebSocket event listener here
+    window.Echo.channel('notification{{ Auth::user()->id }}').listen('.notifier.message', (data) => {
+        // Update UI with received message
+        let auction = data.auction;
+        let crop = data.crop;
+        let creator = data.creator;
+        let bidder_id = data.bidder;
+
+        const alertMessage = document.createElement("div");
+        alertMessage.classList.add("alert", "alert-success", "w-100", "h-100", "text-center", "fs-3");
+        alertMessage.textContent="This auction is completed!";
+        const alertMessage2 = document.createElement("div");
+        alertMessage2.classList.add("alert", "alert-success", "w-100", "h-100", "text-center", "fs-3");
+        alertMessage2.textContent="This auction is completed!";
+
+
+        const bidBtn = document.getElementById("bid-btn");
+        bidBtn.remove();
+        const inputMobile = document.getElementById("inputPrice");
+        inputMobile.remove();
+        const bidBtn2 = document.getElementById("bid-btn2");
+        bidBtn2.remove();
+        const inputDesktop = document.getElementById("inPriceDesk");
+        inputDesktop.remove();
+
+        
+        const bidDiv = document.getElementById('bid-div');
+        bidDiv.append(alertMessage);
+        bidDiv.classList.remove("border", "border-black");
+
+        const bidDiv2 = document.getElementById('bid-div-desk');
+        bidDiv2.append(alertMessage2);
+        bidDiv2.classList.remove("border", "border-black");
+
+        
+    });
+
+</script>
+
+
       <!-- <script src="../js/biddings.js"></script> -->
 </main>
 @endsection

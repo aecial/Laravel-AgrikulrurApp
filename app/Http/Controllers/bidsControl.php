@@ -13,7 +13,8 @@ class bidsControl extends Controller
     public function bids_res()
     {
         $bids = bids::orderBy('bid_amount', 'ASC')->get();
- 
-        return view('bidding', compact('bids'));
+
+        return view('bidding', compact('bids', 'status'));
     }
 }
+

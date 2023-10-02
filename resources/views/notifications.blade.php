@@ -100,9 +100,14 @@
                   height="150px"
                   class="rounded-circle bg-white object-fit-fill"
                 />
-                <p class="md-title text-success">
-                  Congratulations! You won an auction!
-                </p>
+                <div>
+                  <p class="md-title text-success">
+                    Congratulations! You won an auction!
+                  </p>
+                  <p class="sm-title text-secondary">
+                    Auction ID: {{$notify->auction_id}}
+                  </p>
+                </div>
               </a>
             </td>
           </tr>
@@ -233,5 +238,7 @@
 </script>
           
 </script>
+
+
 </main>
 @endsection

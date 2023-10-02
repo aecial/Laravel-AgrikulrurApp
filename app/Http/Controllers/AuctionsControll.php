@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\auctions;
 use App\Models\crops;
+use App\Models\pending_transactions;
 use App\Models\notifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -91,9 +92,38 @@ class AuctionsControll extends Controller
         }
         
     }
-    public function finish()
+    public function finish(Request $request)
     {
-        return view('finish');
+        $auction_id = $request->input('auction_id');
+        $auctions = auctions::where('auction_id', $auction_id)->get();
+        foreach($auctions as $auction)
+        {
+            $creator = $auction->user_id;
+            $auction = $auction->auction_id;
+            //$winner_bid = bids::where('auction_id', $auction_id)->where(max('bid_amount'))->get('user_id');
+            //$bidder = $winner_bid->user_id;
+            $bidder = Auth::user()->id;
+            $users = User::where('id', $creator)->get();
+
+            $pend_payment = pending_transactions::create([
+                'auction_id' => $auction_id,
+                'creator_id' => $creator,
+                'bidder_id' => $bidder,
+                'creator_status' => 'not_paid',
+                'bidder_status' => 'paid',
+                'status' => 'pending',
+            ]);
+
+            return view('finish', compact('users'));
+        }
+        
+    }
+    public function checkout_farmer()
+    {
+        $creator = Auth::user()->id;
+        $auction = 12;
+        pending_transactions::where('creator_id', $creator)->where('auction_id', $auction)
+        ->update(['creator_status' => 'paid', 'status' => 'completed']);
     }
    /* public function registerUser(Request $request)
     {
