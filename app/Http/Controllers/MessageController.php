@@ -105,6 +105,11 @@ public function sendBid(Request $request)
 
         if(!empty($highestbid->bid_amount))
         {
+            if($auctions->status = 'closed')
+            {
+                //return Redirect()->to('bidding')->with('closed', 'This auction is completed!');
+                return view('bidding', compact('bids','auctions', 'highestbid'))->with('success', 'highest bid fetched');
+            }
             return view('bidding', compact('bids','auctions', 'highestbid'))->with('success', 'highest bid fetched');
             
         }

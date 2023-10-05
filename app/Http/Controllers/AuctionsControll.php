@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\auctions;
 use App\Models\crops;
+use App\Models\pending_transactions;
 use App\Models\notifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -93,15 +94,7 @@ class AuctionsControll extends Controller
     }
     public function finish(Request $request)
     {
-        $auction_id = $request->input('auction_id');
-        $auctions = auctions::where('auction_id', $auction_id)->get();
-        foreach($auctions as $auction)
-        {
-            $creator = $auction->user_id;
-            $users = User::where('id', $creator)->get();
-
-            return view('finish', compact('users'));
-        }
+        return view('finish');
     }
    /* public function registerUser(Request $request)
     {

@@ -100,13 +100,43 @@
                   height="150px"
                   class="rounded-circle bg-white object-fit-fill"
                 />
-                <p class="md-title text-success">
-                  Congratulations! You won an auction!
-                </p>
+                <div>
+                  <p class="md-title text-success">
+                    Congratulations! You won an auction!
+                  </p>
+                  <p class="sm-title text-secondary">
+                    Auction ID: {{$notify->auction_id}}
+                  </p>
+                </div>
               </a>
             </td>
           </tr>
           @endforeach
+          <!--Payment Confirmed Notification -->
+          <tr>
+            <td>
+              <a
+                href="{{ url('congratulation')}}?auction_id={{$notify->auction_id}}"
+                class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
+              >
+                <img
+                  src="../assets/present.svg"
+                  width="150px"
+                  height="150px"
+                  class="rounded-circle bg-white object-fit-fill"
+                />
+                <div>
+                  <p class="md-title text-success">
+                    Farmer just confirmed your payment! Claim your Item Now!
+                  </p>
+                  <p class="sm-title text-secondary">
+                    Auction ID: {{$notify->auction_id}}
+                  </p>
+                </div>
+              </a>
+            </td>
+          </tr>
+          <!--Payment Confirmed Notification -->
         </tbody>
       </table>
     </main>
@@ -233,5 +263,7 @@
 </script>
           
 </script>
+
+
 </main>
 @endsection

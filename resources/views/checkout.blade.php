@@ -136,16 +136,45 @@
                   </p>
                 </div>
                 
-                <a
+                <!-- <a
                   class="btn btn-success fs-1 w-100"
                   href="{{ url('finish')}}?auction_id={{$auction->auction_id}}"
                   >Transferred</a
-                >
+                > -->
+                <!-- Button trigger modal -->
+<button type="button" class="btn btn-success fs-1 w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Transferred
+</button>
+
+<!-- Modal -->
+<div class="modal fade fs-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-light">
+        <h5 class="modal-title" id="staticBackdropLabel">Farmer Confirmation Pending</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Wait for farmer to confirm your payment or you may contact <br>
+        {{$user->name}} (Farmer) <br>
+        Phone Number : <a href="tel:{{$user->phone}}">{{$user->phone}}</a> 
+        <br>
+        for faster transaction
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary fs-3" data-bs-dismiss="modal">Close</button>
+        <a class="btn btn-success fs-3">Understood</a>
+      </div>
+    </div>
+  </div>
+</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </main>
-    <script src="../copy.js"></script>
+    <script src="../js/copy.js"></script>
 @endsection
