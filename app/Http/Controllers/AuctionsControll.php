@@ -62,10 +62,11 @@ class AuctionsControll extends Controller
         {
 
             $user_type = $user->user_type;
-            $toThisUser = $user->id;
+            
 
             if($user_type == 2)
             {
+                $toThisUser = $user->id;
                 $notif = notifications::where('bidder_id', $toThisUser)->get();
             
                     return view('notifications', compact('notif'));
@@ -73,8 +74,10 @@ class AuctionsControll extends Controller
             }
             elseif($user_type == 3)
             {
+                $toThisUser = $user->id;
                 $notif = notifications::where('creator_id', $toThisUser)->get();
-               return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+               
+                    return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
       
             }
 
