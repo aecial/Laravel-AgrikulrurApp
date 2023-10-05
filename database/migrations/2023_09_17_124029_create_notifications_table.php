@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('crop_id');
             $table->integer('creator_id')->references('id')->on('users')->unsigned();
             $table->integer('bidder_id')->references('id')->on('users')->unsigned();
-            $table->string('user_type', 2);
             $table->timestamps();
         });
     }

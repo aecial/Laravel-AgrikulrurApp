@@ -54,18 +54,34 @@ class AuctionsControll extends Controller
     }
     public function notifications(Request $request)
     {
-        $toUser = $request->input('id');
-        $user_type = $request->input('user_type');
-        $notif = notifications::where('creator_id', $toUser)->where('user_type', 3)->get();
         
-        if(!empty($toUser) && !empty($notif))
+        $toUser = $request->input('id');
+        $users = User::where('id', $toUser)->get();
+        
+        foreach($users as $user)
         {
-            return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+
+            $user_type = $user->user_type;
+            $toThisUser = $user->id;
+
+            if($user_type == 2)
+            {
+                $notif = notifications::where('bidder_id', $toThisUser)->get();
+            
+                    return view('notifications', compact('notif'));
+
+            }
+            elseif($user_type == 3)
+            {
+                $notif = notifications::where('creator_id', $toThisUser)->get();
+               return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+      
+            }
+
         }
-        else
-        {
-            return view('notifications')->with('notNotify');
-        }
+
+
+       
        
     }
     public function congratulation(Request $request)
@@ -114,7 +130,6 @@ class AuctionsControll extends Controller
     }
     public function finish(Request $request)
     {
-<<<<<<< HEAD
         $auction_id = $request->input('auction_id');
         $auctions = auctions::where('auction_id', $auction_id)->get();
         foreach($auctions as $auction)
@@ -142,16 +157,12 @@ class AuctionsControll extends Controller
     public function checkout_farmer(Request $request)
     {
         $creator = Auth::user()->id;
-<<<<<<< HEAD
         $auction = 14;
-=======
         $auction = $request->input('auction_id');
->>>>>>> e89923ae456bd6d9a67b66eda713b45d9d8bea20
         pending_transactions::where('creator_id', $creator)->where('auction_id', $auction)
         ->update(['creator_status' => 'paid', 'status' => 'completed']);
-=======
+
         return view('finish');
->>>>>>> 1da85378cfc915ca9670781d002d3115350fb8ce
     }
    /* public function registerUser(Request $request)
     {
