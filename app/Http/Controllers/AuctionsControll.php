@@ -114,6 +114,7 @@ class AuctionsControll extends Controller
     }
     public function finish(Request $request)
     {
+<<<<<<< HEAD
         $auction_id = $request->input('auction_id');
         $auctions = auctions::where('auction_id', $auction_id)->get();
         foreach($auctions as $auction)
@@ -144,6 +145,9 @@ class AuctionsControll extends Controller
         $auction = $request->input('auction_id');
         pending_transactions::where('creator_id', $creator)->where('auction_id', $auction)
         ->update(['creator_status' => 'paid', 'status' => 'completed']);
+=======
+        return view('finish');
+>>>>>>> 1da85378cfc915ca9670781d002d3115350fb8ce
     }
    /* public function registerUser(Request $request)
     {
