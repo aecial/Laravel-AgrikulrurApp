@@ -49,7 +49,9 @@
         <p class="desc">
           You can also call your farmer for more information and details.
         </p>
-        <p class="desc">Name: <span id="farmer">Farmer</span></p>
+        @foreach($users as $user)
+        <p class="desc">Name: <span id="farmer">{{$user->name}}</span></p>
+        @endforeach
         <p class="desc">
           <a class="phone-number text-black" href="tel:09982409945">
             <i class="fa-sharp fa-solid fa-phone fa-lg"></i>09982409945

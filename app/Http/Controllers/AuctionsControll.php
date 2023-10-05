@@ -91,9 +91,17 @@ class AuctionsControll extends Controller
         }
         
     }
-    public function finish()
+    public function finish(Request $request)
     {
-        return view('finish');
+        $auction_id = $request->input('auction_id');
+        $auctions = auctions::where('auction_id', $auction_id)->get();
+        foreach($auctions as $auction)
+        {
+            $creator = $auction->user_id;
+            $users = User::where('id', $creator)->get();
+
+            return view('finish', compact('users'));
+        }
     }
    /* public function registerUser(Request $request)
     {

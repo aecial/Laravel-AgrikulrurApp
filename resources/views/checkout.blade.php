@@ -138,7 +138,7 @@
                 
                 <a
                   class="btn btn-success fs-1 w-100"
-                  href="{{ url('finish')}}"
+                  href="{{ url('finish')}}?auction_id={{$auction->auction_id}}"
                   >Transferred</a
                 >
               </div>
