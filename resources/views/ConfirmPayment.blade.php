@@ -60,10 +60,6 @@
             <div
               class="d-flex flex-column justify-content-center mx-5 p-5 mb-lg-5"
             >
-            <!-- @foreach($auctions as $auction) 
-              <p class="title text-light">Name: {{$auction->user_id}}</p>
-            @endforeach-->
-
             @foreach($users as $user) 
               <p class="title text-light">Name: {{$user->name}}</p>
             @endforeach
@@ -95,8 +91,9 @@
             </div>
             <div class="container-fluid bg-light">
               <p class="title text-success">
-                Open Gcash app and send the total amount to the number provided
-                above and then comeback and click "Transferred"
+                Open Gcash app and check if the total amount to your gcash
+                number was transferred and then comeback and click "Confirm
+                Payment", Otherwise Click "I did not receive any payment"
               </p>
             </div>
           </div>
@@ -112,7 +109,6 @@
                     <span class="fw-bold" id="auction-id">{{$auction->auction_id}}</span>
                   </p>
               @endforeach
-                
                 <div
                   class="d-flex flex-column flex-lg-row justify-content-evenly align-items-center"
                 >
@@ -134,46 +130,21 @@
                     <span class="text-success" id="total">{{$total}}</span>
                   </p>
                 </div>
-                
-                <!-- <a
+                <a
+                  class="btn btn-outline-danger fs-1 w-50 mb-4"
+                  href="Congratulations.html"
+                  >I did not receive any payment</a
+                >
+                <a
                   class="btn btn-success fs-1 w-100"
-                  href="{{ url('finish')}}?auction_id={{$auction->auction_id}}"
-                  >Transferred</a
-                > -->
-                <!-- Button trigger modal -->
-<button type="button" class="btn btn-success fs-1 w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Transferred
-</button>
-
-<!-- Modal -->
-<div class="modal fade fs-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-success text-light">
-        <h5 class="modal-title" id="staticBackdropLabel">Farmer Confirmation Pending</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Wait for farmer to confirm your payment or you may contact <br>
-        {{$user->name}} (Farmer) <br>
-        Phone Number : <a href="tel:{{$user->phone}}">{{$user->phone}}</a> 
-        <br>
-        for faster transaction
-        <br>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary fs-3" data-bs-dismiss="modal">Close</button>
-        <a class="btn btn-success fs-3">Understood</a>
-      </div>
-    </div>
-  </div>
-</div>
+                  href="{{ url('checkout_farmer')}}?auction_id={{$auction->auction_id}}"
+                  >Confirm Payment</a
+                >
               </div>
             </div>
           </div>
         </div>
       </div>
     </main>
-    <script src="../js/copy.js"></script>
+    <script src="../copy.js"></script>
 @endsection

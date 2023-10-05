@@ -65,6 +65,7 @@ Route::get('/guidelines' ,[AuctionsControll::class , 'guidelines']);
 Route::get('/notifications' ,[AuctionsControll::class , 'notifications']);
 Route::get('/congratulation' ,[AuctionsControll::class , 'congratulation']);
 Route::get('/checkout' ,[AuctionsControll::class , 'checkout']);
+Route::get('/confirm_payment' ,[AuctionsControll::class , 'confirm_payment']);
 Route::get('/checkout_farmer' ,[AuctionsControll::class , 'checkout_farmer']);
 Route::get('/finish' ,[AuctionsControll::class , 'finish']);
 

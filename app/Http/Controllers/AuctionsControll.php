@@ -55,7 +55,8 @@ class AuctionsControll extends Controller
     public function notifications(Request $request)
     {
         $toUser = $request->input('id');
-        $notif = notifications::where('bidder_id', $toUser)->get();
+        $user_type = $request->input('user_type');
+        $notif = notifications::where('creator_id', $toUser)->where('user_type', 3)->get();
         
         if(!empty($toUser) && !empty($notif))
         {
@@ -92,6 +93,25 @@ class AuctionsControll extends Controller
         }
         
     }
+    public function confirm_payment(Request $request)
+    {
+        $auction_id = $request->input('auction_id');
+        $auctions = auctions::where('auction_id', $auction_id)->get();
+        foreach($auctions as $auction)
+        {
+            $creator = $auction->user_id;
+            $cropname = $auction->crop_id;
+            $users = User::where('id', $creator)->get();
+            $crops = crops::where('crop_id', $cropname)->get();
+            $highestbid = bids::where('auction_id', $auction->auction_id)->get('bid_amount')->max();
+            $volume =  $auction->crop_volume;
+            $highest = $highestbid->bid_amount;
+            $total = $highest * $volume;
+
+            return view('ConfirmPayment', compact('auctions', 'users', 'crops', 'total'));
+        }
+        
+    }
     public function finish(Request $request)
     {
         $auction_id = $request->input('auction_id');
@@ -118,10 +138,10 @@ class AuctionsControll extends Controller
         }
         
     }
-    public function checkout_farmer()
+    public function checkout_farmer(Request $request)
     {
         $creator = Auth::user()->id;
-        $auction = 12;
+        $auction = $request->input('auction_id');
         pending_transactions::where('creator_id', $creator)->where('auction_id', $auction)
         ->update(['creator_status' => 'paid', 'status' => 'completed']);
     }

@@ -156,8 +156,13 @@
                                     name="phone"
                                     placeholder="Put Phone Number Here"
                                     onchange="phoneCheck()"
-                                    value="{{ old('phone-number') }}"
+                                    value="{{ old('phone') }}"
                                     />
+                                    @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     <div class="invalid-feedback">Invalid Phone Number</div>
                                     <label for="phone-number">Phone Number</label>
                                 </div>
@@ -188,13 +193,12 @@
                                     class="form-check-input"
                                     type="radio"
                                     id="farmer-type"
-                                    onchange="radioChange('farmer')"
-                                    
-                                    name="acc-type"
-                                    value="{{ old('acc-type') }}"
-                                    disabled
+                                    onchange="radioChange('farmer')"             
+                                    name="user_type"
+                                    value="2"
+
                                     />
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <label class="form-check-label" for="farmer-type">
                                     Farmer
                                     </label>
                                 </div>
@@ -204,15 +208,13 @@
                                     <input
                                     class="form-check-input"
                                     type="radio"
-                                    name="acc-type"
+                                    name="user_type"
                                     id="consumer-type"
                                     onchange="radioChange('consumer')"
-                                   
-                                    name="acc-type"
-                                    value="{{ old('acc-type') }}"
-                                    disabled
+                                    value="3"
+
                                     />
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                    <label class="form-check-label" for="consumer-type">
                                     Consumer
                                     </label>
                                 </div>

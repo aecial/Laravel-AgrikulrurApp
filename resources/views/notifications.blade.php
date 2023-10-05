@@ -112,11 +112,11 @@
             </td>
           </tr>
           @endforeach
-          <!--Payment Confirmed Notification -->
+          <!--Payment Confirmed Notification 
           <tr>
             <td>
               <a
-                href="{{ url('congratulation')}}?auction_id={{$notify->auction_id}}"
+                href="{{ url('finish')}}?auction_id={{$notify->auction_id}}"
                 class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
               >
                 <img
@@ -136,6 +136,33 @@
               </a>
             </td>
           </tr>
+
+          Payment Confirmed Notification -->
+          <!--Payment Confirmed Notification -->
+          <tr>
+            <td>
+              <a
+                href="{{ url('confirm_payment')}}?auction_id={{$notify->auction_id}}"
+                class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
+              >
+                <img
+                  src="../assets/present.svg"
+                  width="150px"
+                  height="150px"
+                  class="rounded-circle bg-white object-fit-fill"
+                />
+                <div>
+                  <p class="md-title text-success">
+                    Please Confirm the Payment of Farmer {{$notify->creator_id}}
+                  </p>
+                  <p class="sm-title text-secondary">
+                    Auction ID: {{$notify->auction_id}}
+                  </p>
+                </div>
+              </a>
+            </td>
+          </tr>
+          
           <!--Payment Confirmed Notification -->
         </tbody>
       </table>
