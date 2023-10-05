@@ -54,38 +54,24 @@ class AuctionsControll extends Controller
     }
     public function notifications(Request $request)
     {
-        
-        $toUser = $request->input('id');
-        $users = User::where('id', $toUser)->get();
-        
-        foreach($users as $user)
+  
+        if(Auth::user()->user_type  = '2')
         {
-
-            $user_type = $user->user_type;
-            
-
-            if($user_type == 2)
-            {
-                $toThisUser = $user->id;
-                $notif = notifications::where('bidder_id', $toThisUser)->get();
-            
-                    return view('notifications', compact('notif'));
-
-            }
-            elseif($user_type == 3)
-            {
-                $toThisUser = $user->id;
-                $notif = notifications::where('creator_id', $toThisUser)->get();
-               
-                    return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
-      
-            }
+            $toThisUser = Auth::user()->id;
+            $notif = notifications::where('bidder_id', $toThisUser)->get();
+        
+                return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
 
         }
-
-
-       
-       
+        elseif(Auth::user()->user_type = '3')
+        {
+            $toThisUser = Auth::user()->id;
+            $notif = notifications::where('creator_id', $toThisUser)->get();
+            
+                return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+    
+        }
+   
     }
     public function congratulation(Request $request)
     {

@@ -140,7 +140,7 @@
           @endforeach
           Payment Confirmed Notification -->
           <!--Payment Confirmed Notification -->
-          @foreach($notif as $notify)
+          <!-- @foreach($notif as $notify)
           <tr>
             <td>
               <a
@@ -164,7 +164,7 @@
               </a>
             </td>
           </tr>
-          @endforeach
+          @endforeach -->
           <!--Payment Confirmed Notification -->
         </tbody>
       </table>
