@@ -121,7 +121,7 @@ class AuctionsControll extends Controller
     public function checkout_farmer()
     {
         $creator = Auth::user()->id;
-        $auction = 12;
+        $auction = 14;
         pending_transactions::where('creator_id', $creator)->where('auction_id', $auction)
         ->update(['creator_status' => 'paid', 'status' => 'completed']);
     }
