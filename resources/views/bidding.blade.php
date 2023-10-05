@@ -664,7 +664,7 @@
 </script>
 <script type="module">//type="module" is important! do not remove it.
     // Add your WebSocket event listener here
-    window.Echo.channel('notification{{ Auth::user()->id }}').listen('.notifier.message', (data) => {
+    window.Echo.channel('end_auction').listen('.end_auction.message', (data) => {
         // Update UI with received message
         let auction = data.auction;
         let crop = data.crop;

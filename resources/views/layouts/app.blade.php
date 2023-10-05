@@ -59,7 +59,7 @@
             <li class="nav-item d-block d-xxl-none">
               <a
                 class="nav-link text-success"
-                href="{{ url('notifications') }}?id={{ Auth::user()->id }}?user_type=2"
+                href="{{ url('notifications') }}?id={{ Auth::user()->id }}"
                 id="nav-link"
                 ><i class="fa-solid fa-bell"></i> Notifications</a
               >
@@ -122,7 +122,7 @@
               <a class="dropdown-item text-success" href="{{ url('profile') }}"
                 ><i class="fa-solid fa-user"></i> Profile</a
               >
-              <a class="dropdown-item text-success" href="{{ url('notifications') }}?id={{ Auth::user()->id }}?user_type=2"
+              <a class="dropdown-item text-success" href="{{ url('notifications') }}?id={{ Auth::user()->id }}"
                 ><i class="fa-solid fa-bell"></i> Notifications</a
               >
               <div class="dropdown-divider"></div>

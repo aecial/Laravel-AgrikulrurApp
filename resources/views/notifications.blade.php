@@ -113,6 +113,7 @@
           </tr>
           @endforeach
           <!--Payment Confirmed Notification 
+          @foreach($notif as $notify)
           <tr>
             <td>
               <a
@@ -136,9 +137,10 @@
               </a>
             </td>
           </tr>
-
+          @endforeach
           Payment Confirmed Notification -->
           <!--Payment Confirmed Notification -->
+          @foreach($notif as $notify)
           <tr>
             <td>
               <a
@@ -162,7 +164,7 @@
               </a>
             </td>
           </tr>
-          
+          @endforeach
           <!--Payment Confirmed Notification -->
         </tbody>
       </table>
@@ -202,7 +204,9 @@
 
 
         let name = document.createElement("td");
-        name.innerHTML = `<a
+        name.innerHTML = `
+                          @foreach($notif as $notify)
+                          <a
                             href="{{ url('congratulation')}}?auction_id={{$notify->auction_id}}"
                             class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
                           >
@@ -215,7 +219,8 @@
                                 <p class="md-title text-success">
                                   Congratulations! You won an auction!` + crop +`
                                 </p>
-                          </a>`;
+                          </a>
+                          @endforeach`;
         row.appendChild(name);
         
         /*let auct = document.createElement("td");

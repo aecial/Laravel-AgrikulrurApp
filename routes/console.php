@@ -2,6 +2,7 @@
 
 use App\Events\NewMessageEvent;
 use App\Events\notifier;
+use App\Events\end_auction;
 use App\Models\auctions;
 use App\Models\bids;
 use App\Models\notifications;
@@ -55,6 +56,7 @@ Artisan::command('fetch:auctions', function () {
                 ]);
 
                 event(new notifier($auction_id, $crop_id, $creator_id, $bidder_id ));
+                event(new end_auction($auction_id, $crop_id, $creator_id, $bidder_id ));
             }
               
         }

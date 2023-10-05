@@ -54,18 +54,37 @@ class AuctionsControll extends Controller
     }
     public function notifications(Request $request)
     {
-        $toUser = $request->input('id');
-        $user_type = $request->input('user_type');
-        $notif = notifications::where('creator_id', $toUser)->where('user_type', 3)->get();
         
-        if(!empty($toUser) && !empty($notif))
+        $toUser = $request->input('id');
+        $users = User::where('id', $toUser)->get();
+        
+        foreach($users as $user)
         {
-            return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+
+            $user_type = $user->user_type;
+            
+
+            if($user_type == 2)
+            {
+                $toThisUser = $user->id;
+                $notif = notifications::where('bidder_id', $toThisUser)->get();
+            
+                    return view('notifications', compact('notif'));
+
+            }
+            elseif($user_type == 3)
+            {
+                $toThisUser = $user->id;
+                $notif = notifications::where('creator_id', $toThisUser)->get();
+               
+                    return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+      
+            }
+
         }
-        else
-        {
-            return view('notifications')->with('notNotify');
-        }
+
+
+       
        
     }
     public function congratulation(Request $request)
@@ -141,6 +160,7 @@ class AuctionsControll extends Controller
     public function checkout_farmer(Request $request)
     {
         $creator = Auth::user()->id;
+        $auction = 14;
         $auction = $request->input('auction_id');
         pending_transactions::where('creator_id', $creator)->where('auction_id', $auction)
         ->update(['creator_status' => 'paid', 'status' => 'completed']);
