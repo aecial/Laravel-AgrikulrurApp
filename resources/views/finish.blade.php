@@ -38,6 +38,7 @@
  
     <main class="container bg-light">
       <!--START OF NOTIF-->
+      @foreach($users as $user)
       <div class="winning-template">
         <div
           class="d-flex flex-column justify-content-center align-items-center"
@@ -49,7 +50,7 @@
         <p class="desc">
           You can also call your farmer for more information and details.
         </p>
-        <p class="desc">Name: <span id="farmer">Farmer</span></p>
+        <p class="desc">Name: <span id="farmer">{{$user->name}}</span></p>
         <p class="desc">
           <a class="phone-number text-black" href="tel:{{$user->phone}}">
             <i class="fa-sharp fa-solid fa-phone fa-lg"></i>{{$user->phone}}

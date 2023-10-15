@@ -6,6 +6,8 @@ use App\Events\end_auction;
 use App\Models\auctions;
 use App\Models\bids;
 use App\Models\notifications;
+use App\Models\farmerNotif;
+use App\Models\consNotif;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Carbon\Carbon;
@@ -47,13 +49,28 @@ Artisan::command('fetch:auctions', function () {
                 $crop_id = $auction->crop_id;
                 $creator_id = $auction->user_id;
                 $bidder_id =  $bid->user_id;
-
-                notifications::create([
+                
+                farmerNotif::create([
+                    'auction_id' => $auction_id,
+                    'crop_id' => $crop_id,
+                    'creator_id' => $creator_id,
+                ]); 
+                
+                consNotif::create([
+                    'auction_id' => $auction_id,
+                    'crop_id' => $crop_id,
+                    'bidder_id' => $bidder_id,
+                ]); 
+                
+                
+                
+                
+            /*  notifications::create([
                     'auction_id' => $auction_id,
                     'crop_id' => $crop_id,
                     'creator_id' => $creator_id,
                     'bidder_id' => $bidder_id,
-                ]);
+                ]); */
 
                 event(new notifier($auction_id, $crop_id, $creator_id, $bidder_id ));
                 event(new end_auction($auction_id, $crop_id, $creator_id, $bidder_id ));

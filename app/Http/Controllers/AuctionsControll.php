@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\bids;
+use App\Models\consNotif;
+use App\Models\farmerNotif;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\auctions;
@@ -55,18 +57,19 @@ class AuctionsControll extends Controller
     public function notifications(Request $request)
     {
   
-        if(Auth::user()->user_type  = '2')
+       
+        if(Auth::user()->user_type  == '2')
         {
             $toThisUser = Auth::user()->id;
-            $notif = notifications::where('bidder_id', $toThisUser)->get();
+            $notif = farmerNotif::where('creator_id', $toThisUser)->get();
         
                 return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
 
         }
-        elseif(Auth::user()->user_type = '3')
+        elseif(Auth::user()->user_type == '3')
         {
             $toThisUser = Auth::user()->id;
-            $notif = notifications::where('creator_id', $toThisUser)->get();
+            $notif = consNotif::where('bidder_id', $toThisUser)->get();
             
                 return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
     
@@ -146,12 +149,13 @@ class AuctionsControll extends Controller
     public function checkout_farmer(Request $request)
     {
         $creator = Auth::user()->id;
-        $auction = 14;
         $auction = $request->input('auction_id');
         pending_transactions::where('creator_id', $creator)->where('auction_id', $auction)
         ->update(['creator_status' => 'paid', 'status' => 'completed']);
-
-        return view('finish');
+        
+        $users = User::where('id', $creator)->get();
+        
+        return view('finish', compact('users'));
     }
    /* public function registerUser(Request $request)
     {

@@ -102,7 +102,11 @@
                 />
                 <div>
                   <p class="md-title text-success">
-                    Congratulations! You won an auction!
+                    @if(Auth::user()->user_type == 2 )
+                        Your created has been ended
+                    @elseif(Auth::user()->user_type == 3)
+                        Congratulations! You won an auction!
+                    @endif
                   </p>
                   <p class="sm-title text-secondary">
                     Auction ID: {{$notify->auction_id}}
