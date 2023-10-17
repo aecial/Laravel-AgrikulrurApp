@@ -48,10 +48,10 @@
         <p class="desc">
           You can also call the consumer for more information and details.
         </p>
-        <p class="desc">Name: <span id="farmer">Farmer</span></p>
+        <p class="desc">Name: <span id="farmer">{{Auth::user()->name}}</span></p>
         <p class="desc">
-          <a class="phone-number text-black" href="tel:09982409945">
-            <i class="fa-sharp fa-solid fa-phone fa-lg"></i>09982409945
+          <a class="phone-number text-black" href="tel:{{Auth::user()->phone}}">
+            <i class="fa-sharp fa-solid fa-phone fa-lg"></i>{{Auth::user()->phone}}
           </a>
         </p>
       </div>

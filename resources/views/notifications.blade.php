@@ -129,7 +129,7 @@
           <tr>
             <td>
                 <a
-                  href="{{ url('checkut_farmer')}}?auction_id={{$notify->auction_id}}"
+                  href="{{ url('confirm_payment')}}?auction_id={{$notify->auction_id}}"
                   class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
                 >
                 <img
