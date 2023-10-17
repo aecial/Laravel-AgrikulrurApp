@@ -274,7 +274,7 @@
                 <div class="row mb-3">
                     <div class="col text-center">
                         <small class="text-center">By clicking Sign Up, you agree to our
-                            <a href="">Terms and Conditions</a>
+                            <button href="">Terms and Conditions</button> and <button>Privacy Policy</button>
                         </small>
                     </div>
                 </div>
