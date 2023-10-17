@@ -90,10 +90,17 @@
          @foreach($notif as $notify)
           <tr>
             <td>
-              <a
-                href="{{ url('congratulation')}}?auction_id={{$notify->auction_id}}"
-                class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
-              >
+                @if(Auth::user()->user_type == 2 )
+                <a
+                  href="{{ url('send-bid')}}?auction_id={{$notify->auction_id}}"
+                  class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
+                >
+                @elseif(Auth::user()->user_type == 3)
+                <a
+                  href="{{ url('congratulation')}}?auction_id={{$notify->auction_id}}"
+                  class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
+                >
+                @endif
                 <img
                   src="../assets/winner.svg"
                   width="150px"
@@ -103,7 +110,7 @@
                 <div>
                   <p class="md-title text-success">
                     @if(Auth::user()->user_type == 2 )
-                        Your created has been ended
+                        Your auction listing has ended
                     @elseif(Auth::user()->user_type == 3)
                         Congratulations! You won an auction!
                     @endif
@@ -116,6 +123,61 @@
             </td>
           </tr>
           @endforeach
+
+          @if(Auth::user()->user_type == 2)
+          @foreach($farmer_conpay as $fconpay)
+          <tr>
+            <td>
+                <a
+                  href="{{ url('checkut_farmer')}}?auction_id={{$notify->auction_id}}"
+                  class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
+                >
+                <img
+                  src="../assets/transferMoney.png"
+                  width="150px"
+                  height="150px"
+                  class="rounded-circle bg-white object-fit-fill"
+                />
+                <div>
+                  <p class="md-title text-success">
+                    Winning bidder just paid for your item,
+                    Confirm Payment Now!
+                  </p>
+                  <p class="sm-title text-secondary">
+                    Auction ID: {{$notify->auction_id}}
+                  </p>
+                </div>
+              </a>
+            </td>
+          </tr>
+          @endforeach
+          @elseif(Auth::user()->user_type == 3)
+          @foreach($notif as $notify)
+          <tr>
+            <td>
+                <a
+                  href="{{ url('finished')}}?auction_id={{$notify->auction_id}}"
+                  class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
+                >
+                <img
+                  src="../assets/present.svg"
+                  width="150px"
+                  height="150px"
+                  class="rounded-circle bg-white object-fit-fill"
+                />
+                <div>
+                  <p class="md-title text-success">
+                    Farmer just confirmed your payment! Claim your Item Now!
+                  </p>
+                  <p class="sm-title text-secondary">
+                    Auction ID: {{$notify->auction_id}}
+                  </p>
+                </div>
+              </a>
+            </td>
+          </tr>
+          @endforeach
+          @endif
           <!--Payment Confirmed Notification 
           @foreach($notif as $notify)
           <tr>

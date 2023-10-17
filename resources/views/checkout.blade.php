@@ -164,7 +164,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary fs-3" data-bs-dismiss="modal">Close</button>
-        <a class="btn btn-success fs-3">Understood</a>
+        <a href="{{ url('bidder_payment')}}?auction_id={{$auction->auction_id}}" class="btn btn-success fs-3">Understood</a>
       </div>
     </div>
   </div>

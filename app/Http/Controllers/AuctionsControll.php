@@ -62,8 +62,9 @@ class AuctionsControll extends Controller
         {
             $toThisUser = Auth::user()->id;
             $notif = farmerNotif::where('creator_id', $toThisUser)->get();
+            $farmer_conpay = pending_transactions::where('creator_status', 'not_paid')->get();
         
-                return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+                return view('notifications', compact('notif', 'farmer_conpay'))->with('noti', 'autions fetched!');
 
         }
         elseif(Auth::user()->user_type == '3')
@@ -120,7 +121,7 @@ class AuctionsControll extends Controller
         }
         
     }
-    public function finish(Request $request)
+    public function bidder_payment(Request $request)
     {
         $auction_id = $request->input('auction_id');
         $auctions = auctions::where('auction_id', $auction_id)->get();
@@ -141,8 +142,9 @@ class AuctionsControll extends Controller
                 'bidder_status' => 'paid',
                 'status' => 'pending',
             ]);
+            $notif = consNotif::where('bidder_id', Auth::user()->id)->get();
 
-            return view('finish', compact('users'));
+            return view('notifications', compact('notif'));
         }
         
     }
@@ -155,6 +157,11 @@ class AuctionsControll extends Controller
         
         $users = User::where('id', $creator)->get();
         
+        return view('cong_farmer', compact('users'));
+    }
+    public function finished()
+    {
+        $users = User::where('id', Auth::user()->id)->get();
         return view('finish', compact('users'));
     }
    /* public function registerUser(Request $request)
