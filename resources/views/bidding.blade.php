@@ -73,7 +73,7 @@
               <p class="mt-2">Ending In</p>
               <div class="d-flex align-items-center">
                 @foreach($auctions as $auction)
-                  <p class="fs-1 fw-bold mt-3">{{ $auction->created_at }}</p>
+                  <p class="fs-1 fw-bold mt-3">{{ $auction->end_time }}</p>
                 @endforeach
               </div>
               <p class="mt-3">
