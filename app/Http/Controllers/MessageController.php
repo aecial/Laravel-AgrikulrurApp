@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\auctions;
+use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -100,6 +101,10 @@ public function sendBid(Request $request)
 
         $bids = bids::where('auction_id', $on_auction)->orderBy('bid_amount', 'desc')->get();
         $auctions = auctions::where('auction_id', $on_auction)->get();//->value('auction_id');
+        foreach($auctions as $auction)
+        {
+            $creator = User::where('id', $auction->user_id)->get();
+        }
         $highestbid = bids::where('auction_id', $on_auction)->get('bid_amount')->max();
         //$highestbid = DB::table('bids')->max('bid_amount');
 
@@ -108,19 +113,40 @@ public function sendBid(Request $request)
             if($auctions->status = 'closed')
             {
                 //return Redirect()->to('bidding')->with('closed', 'This auction is completed!');
-                return view('bidding', compact('bids','auctions', 'highestbid'))->with('success', 'highest bid fetched');
+                return view('bidding', compact('bids','auctions', 'highestbid', 'creator'))->with('success', 'highest bid fetched');
             }
             return view('bidding', compact('bids','auctions', 'highestbid'))->with('success', 'highest bid fetched');
             
         }
         else
         {
-            return view('bidding', compact('bids','auctions', 'highestbid'))->with('failed', 'No bids Yet!');
+            return view('bidding', compact('bids','auctions', 'highestbid', 'creator'))->with('failed', 'No bids Yet!');
         }
 
         
     }
+
+
+
+
+    public function auctions(Request $request)
+    {
+        $type = $request->input('type');
+        $auctions = auctions::where('crop_id', $type)->get();
+        foreach($auctions as $auction)
+        {
+            $creator = User::where('id', $auction->user_id)->get();
+        }
+        //$creator = User::where('id', $auctions->user_id)->get();
+        return view('auctionpage', compact('auctions', 'creator'));
+    }
     
+
+
+
+
+
+
     //Testing Logic
     protected $validationService;
 

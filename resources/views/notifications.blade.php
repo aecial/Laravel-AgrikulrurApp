@@ -125,11 +125,11 @@
           @endforeach
 
           @if(Auth::user()->user_type == 2)
-          @foreach($farmer_conpay as $fconpay)
+          @foreach($farmer_conpay as $fConpay)
           <tr>
             <td>
                 <a
-                  href="{{ url('confirm_payment')}}?auction_id={{$notify->auction_id}}"
+                  href="{{ url('confirm_payment')}}?auction_id={{$fConpay->auction_id}}"
                   class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
                 >
                 <img
@@ -144,7 +144,7 @@
                     Confirm Payment Now!
                   </p>
                   <p class="sm-title text-secondary">
-                    Auction ID: {{$notify->auction_id}}
+                    Auction ID: {{$fConpay->auction_id}}
                   </p>
                 </div>
               </a>
@@ -152,11 +152,11 @@
           </tr>
           @endforeach
           @elseif(Auth::user()->user_type == 3)
-          @foreach($notif as $notify)
+          @foreach($consumer_conpay as $cConpay)
           <tr>
             <td>
                 <a
-                  href="{{ url('finished')}}?auction_id={{$notify->auction_id}}"
+                  href="{{ url('finished')}}?auction_id={{$cConpay->auction_id}}"
                   class="notif-link d-flex align-items-center gap-5 text-decoration-none p-4"
                 >
                 <img
@@ -170,7 +170,7 @@
                     Farmer just confirmed your payment! Claim your Item Now!
                   </p>
                   <p class="sm-title text-secondary">
-                    Auction ID: {{$notify->auction_id}}
+                    Auction ID: {{$cConpay->auction_id}}
                   </p>
                 </div>
               </a>

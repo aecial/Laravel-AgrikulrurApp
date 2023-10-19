@@ -49,16 +49,36 @@
           <div class="row bg-light row-cols-2 p-2">
             <div class="col border-end border-black">
               <p class="mt-2">Creator</p>
-              <div class="d-flex align-items-center">
-                <img
-                  src="../assets/devTeam/Darren.png"
-                  alt=""
-                  class="rounded-circle m-2"
-                  style="width: 50px"
-                />
-                @foreach($auctions as $auction)
-                <p class="fs-5 fw-bold">{{ $auction->user_id }}</p>
-                @endforeach
+              @foreach($creator as $farmer)
+                  @if($farmer->id == 1)
+                    <div class="d-flex align-items-center">
+                      <img
+                        src="../assets/devTeam/Denmark.jpg"
+                        alt=""
+                        class="rounded-circle m-2"
+                        style="width: 50px"
+                    />
+                    @elseif($farmer->id == 2)
+                    <div class="d-flex align-items-center">
+                      <img
+                        src="../assets/devTeam/Teddy.jpg"
+                        alt=""
+                        class="rounded-circle m-2"
+                        style="width: 50px"
+                    />
+                    @elseif($farmer->id == 3)
+                    <div class="d-flex align-items-center">
+                      <img
+                        src="../assets/devTeam/Darren.png"
+                        alt=""
+                        class="rounded-circle m-2"
+                        style="width: 50px"
+                    />
+                  @endif
+              @endforeach
+
+                <p class="fs-5 fw-bold">@foreach($creator as $farmer){{ $farmer->name }} @endforeach</p>
+
                 <!-- <p class="fs-5 fw-bold">Darren Ventura</p> -->
               </div>
               <p>Base Bid Price: 

@@ -50,7 +50,8 @@ Artisan::command('fetch:auctions', function () {
                 $creator_id = $auction->user_id;
                 $bidder_id =  $bid->user_id;
                 
-                farmerNotif::create([
+                         
+                /*farmerNotif::create([
                     'auction_id' => $auction_id,
                     'crop_id' => $crop_id,
                     'creator_id' => $creator_id,
@@ -60,10 +61,8 @@ Artisan::command('fetch:auctions', function () {
                     'auction_id' => $auction_id,
                     'crop_id' => $crop_id,
                     'bidder_id' => $bidder_id,
-                ]); 
-                
-                
-                
+                ]);
+     
                 
             /*  notifications::create([
                     'auction_id' => $auction_id,
@@ -71,10 +70,23 @@ Artisan::command('fetch:auctions', function () {
                     'creator_id' => $creator_id,
                     'bidder_id' => $bidder_id,
                 ]); */
-
-                event(new notifier($auction_id, $crop_id, $creator_id, $bidder_id ));
-                event(new end_auction($auction_id, $crop_id, $creator_id, $bidder_id ));
+               /*event(new notifier($auction_id, $crop_id, $creator_id, $bidder_id ));
+                event(new end_auction($auction_id, $crop_id, $creator_id, $bidder_id ));*/    
+               
             }
+            farmerNotif::create([
+                'auction_id' => $auction_id,
+                'crop_id' => $crop_id,
+                'creator_id' => $creator_id,
+            ]); 
+            
+            consNotif::create([
+                'auction_id' => $auction_id,
+                'crop_id' => $crop_id,
+                'bidder_id' => $bidder_id,
+            ]);
+            event(new notifier($auction_id, $crop_id, $creator_id, $bidder_id ));
+            event(new end_auction($auction_id, $crop_id, $creator_id, $bidder_id ));
               
         }
 
