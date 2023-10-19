@@ -26,7 +26,14 @@ public function sendMessage(Request $request)
             ['auction_id', '=', $request->input('channel')]
         ])->first();
 
-        if ($website_info != null) {
+        $bids = bids::where('auction_id', $request->input('channel'))->get();
+        $bid_max = $bids->max('bid_amount');
+        
+        $base_price = auctions::where('auction_id', $request->input('channel'))->first('starting_price');
+        $crop_type = auctions::where('auction_id', $request->input('channel'))->first('crop_id');
+
+        if ($website_info != null || $request->input('message') <= $bid_max || $request->input('message') <= $base_price->starting_price) 
+        {
             return response()->json(['failed']);
         } else {
             
@@ -44,7 +51,7 @@ public function sendMessage(Request $request)
                 'bid_amount' => $message,
                 'user_id' => $user['id'],
                 'auction_id' => $channel,
-                'crop_type' => "Okra",
+                'crop_type' => "$crop_type->crop_id",
                 ],
             );
             //return ['status' => 'Message Sent!'];

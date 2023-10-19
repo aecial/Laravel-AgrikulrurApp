@@ -74,9 +74,10 @@
         </div>
         <!--Information Container-->
         <div class="col d-flex flex-column align-items-center">
-          <form action="" class="fs-5 information-section p-4" id="info-form">
-            <p class="title text-light">Personal Information</p>
-            <!--Name Information-->
+          <form action="{{ route('update_info') }}" method="POST" class="fs-5 information-section p-4" id="info-form">
+          @csrf
+          <p class="title text-light">Personal Information</p>
+            <!--First Name Information-->
             <div class="d-flex mb-3">
               <input
                 type="text"
@@ -84,6 +85,7 @@
                 id="name_inp"
                 placeholder="{{ Auth::user()->name }}"
                 onchange="boom()"
+                name="fname"
                 disabled
               />
               <button
@@ -95,7 +97,29 @@
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
             </div>
-            <!--Name Information-->
+            <!--First Name Information-->
+
+            <!--Last Name Information-->
+            <div class="d-flex mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="lname_inp"
+                placeholder="{{ Auth::user()->lname }}"
+                onchange="boom()"
+                name="lname"
+                disabled
+              />
+              <button
+                class="edit-btn text-success"
+                id="edit-info-btn"
+                type="button"
+                onclick='ror("lname_inp")'
+              >
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+            </div>
+            <!--Last Name Information-->
 
             <!--Email Information-->
             <div class="d-flex mb-3">
@@ -105,6 +129,7 @@
                 id="email_inp"
                 placeholder="{{ Auth::user()->email }}"
                 onchange="boom()"
+                name="email"
                 disabled
               />
               <button
@@ -126,6 +151,7 @@
                 id="address_inp"
                 placeholder="{{ Auth::user()->address }}"
                 onchange="boom()"
+                name="address"
                 disabled
               />
               <button
@@ -147,6 +173,7 @@
                 id="mobileNum_inp"
                 placeholder="{{ Auth::user()->phone }}"
                 onchange="boom()"
+                name="phone"
                 disabled
               />
               <button
@@ -163,7 +190,6 @@
               type="submit"
               class="btn btn-success fs-1"
               id="save-btn"
-              disabled
             >
               Save
             </button>

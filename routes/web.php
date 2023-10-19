@@ -47,6 +47,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('home');
+Route::post('/update_info' ,[AuctionsControll::class , 'update_info'])->name('update_info');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/crop-options', [App\Http\Controllers\HomeController::class, 'cropOption'])->name('home');
 

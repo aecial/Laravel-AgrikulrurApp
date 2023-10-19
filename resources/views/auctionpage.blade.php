@@ -51,16 +51,17 @@
     <section
       class="offered-produce container-fluid p-5 d-flex justify-content-center justify-content-lg-start" id="offered">
       <div class="desktop-view flex-wrap d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start gap-5">
-        @foreach($auctions as $auction)
+
+      @foreach($auctions as $auction)
           <div class="card" style="width: 18rem">
                 <img src="../assets/Ampalaya.jpeg" class="card-img-top" alt="" />
                   <div class="card-body">
-                        <h5 class="card-title md-title">Farmer:@foreach($creator as $farmer) {{$farmer->name}} @endforeach</h5>
+                        <h5 class="card-title md-title">Farmer:{{$auction->user_id}}</h5>
                           <div class="card-text">
                             <!-- <p class="fs-2">Price: {{$auction->auction_id}}</p> -->
                             <p class="fs-2">Volume: {{$auction->crop_volume}}</p>
                             <p class="fs-2">Base Bid Price: {{$auction->starting_price}}</p>
-                            <p class="fs-2 highlight-text">Latest Bid Price: 69</p>
+                            <p class="fs-2 highlight-text">Latest Bid Price:</p>
                           </div>
                         <a href="{{ url('send-bid') }}?auction_id={{$auction->auction_id}}" class="btn btn-success fs-1 w-50">Bid</a>
                   </div>

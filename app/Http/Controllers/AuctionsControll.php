@@ -47,12 +47,16 @@ class AuctionsControll extends Controller
     {
         $type = $request->input('type');
         $auctions = auctions::where('crop_id', $type)->get();
+        
+        $arr = array();
         foreach($auctions as $auction)
         {
-            $creator = User::where('id', $auction->user_id)->get();
+            $bids = bids::where('auction_id', $auction->auction_id)->get('bid_amount')->max();
+            array_push($arr, $bids, $auctions);
         }
-        //$creator = User::where('id', $auctions->user_id)->get();
-        return view('auctionpage', compact('auctions', 'creator'));
+        return view('auctionpage', compact('auctions', 'bids', 'arr'));
+        //return response()->json($arr[0]->bid_amount);
+        //return response()->json($arr[0]->bid_amount);
     }
     public function guidelines()
     {
@@ -76,9 +80,8 @@ class AuctionsControll extends Controller
         {
             $toThisUser = Auth::user()->id;
             $notif = consNotif::where('bidder_id', $toThisUser)->get();
-            $consumer_conpay = pending_transactions::where('creator_status', 'paid')->get();
-
-                return view('notifications', compact('notif', 'consumer_conpay'))->with('noti', 'autions fetched!');
+            
+                return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
     
         }
    
@@ -131,8 +134,6 @@ class AuctionsControll extends Controller
     {
         $auction_id = $request->input('auction_id');
         $auctions = auctions::where('auction_id', $auction_id)->get();
-
-        
         foreach($auctions as $auction)
         {
             $creator = $auction->user_id;
@@ -142,9 +143,6 @@ class AuctionsControll extends Controller
             $bidder = Auth::user()->id;
             $users = User::where('id', $creator)->get();
 
-            $request->validate([
-                'auction_id'=>'required|unique:pending_transactions',
-            ]);
             $pend_payment = pending_transactions::create([
                 'auction_id' => $auction_id,
                 'creator_id' => $creator,
@@ -154,9 +152,8 @@ class AuctionsControll extends Controller
                 'status' => 'pending',
             ]);
             $notif = consNotif::where('bidder_id', Auth::user()->id)->get();
-            $consumer_conpay = pending_transactions::where('creator_status', 'paid')->get();
-            
-            return view('notifications', compact('notif', 'consumer_conpay'));
+
+            return view('notifications', compact('notif'));
         }
         
     }
@@ -176,7 +173,39 @@ class AuctionsControll extends Controller
         $users = User::where('id', Auth::user()->id)->get();
         return view('finish', compact('users'));
     }
+    public function update_info(Request $request)
+    {
+        /*$request->validate([
+            'fname'=>'required|unique:User',
+            //'lname'=>'required|unique:User',
+            'email'=>'required|email|unique:User',
+            'phonenum'=>'required|min:11|max:11',
+            //'address'=>'required'
+        ]);*/
+        //dd($request->all());
+        $fname = $request->input('fname');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
 
+        User::where('id', Auth::user()->id)
+        ->update(['name' => $fname, 'email' => $email, 'phone' => $phone]);
+
+        return back()->with('status', 'New Auction has been added');
+
+        /*$user = new User();
+        $user->fname = $request->input('fname');
+        //$user->lname = $request->input('lname');
+        $user->email = $request->input('email');
+        $user->phonenum = $request->input('phone');
+        //$user->address = $request->address;
+        $res = $user->save();
+        if($res){
+            return back()->with('success', 'Update successfully');
+        }else{
+            return back()->with('failed', 'Failed to Update T-T. Something went wrong');
+        }*/
+
+    }
    /* public function registerUser(Request $request)
     {
         $request->validate([
