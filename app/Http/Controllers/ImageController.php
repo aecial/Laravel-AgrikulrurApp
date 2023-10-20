@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\image;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -30,6 +31,7 @@ class ImageController extends Controller
             $userProfileUpdate = 'userProfile'.$userid.'.'.$request['update_image']->extension();
     
             $request->update_image->move(public_path('images/profiles'), $userProfileUpdate);
+            User::where('id', $userid)->update(['profile_img' => $userProfileUpdate]);
     
             return redirect()->back()->withSuccess('Upload image successful')
             ->with('userProfile', $userProfileUpdate);
