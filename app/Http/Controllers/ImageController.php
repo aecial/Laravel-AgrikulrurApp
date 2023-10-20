@@ -6,6 +6,7 @@ use App\Models\image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Services\ValidationService;
 use Illuminate\Validation\Validator;
@@ -15,6 +16,44 @@ class ImageController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function update_profile_image(Request $request)
+    {
+        if($request->hasFile("update_image"))
+        {
+            $request->validate([
+                'update_image' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            ]);
+
+            $userid = Auth::user()->id;
+    
+            $userProfileUpdate = 'userProfile'.$userid.'.'.$request['update_image']->extension();
+    
+            $request->update_image->move(public_path('images/profiles'), $userProfileUpdate);
+    
+            return redirect()->back()->withSuccess('Upload image successful')
+            ->with('userProfile', $userProfileUpdate);
+        }
+        else
+        {
+            return redirect()->back()->with('failure', 'Please provide an Image');;
+        }
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+//Testing functions
+
     public function view_image(): View
     {
         return view('sampleImg');
@@ -36,8 +75,8 @@ class ImageController extends Controller
         $request->valImage->move(public_path('images'), $valImage);
         $request->userProfile->move(public_path('images/profiles'), $userProfile);
 
-        /*return redirect()->back()->withSuccess('Upload image successful')
-        ->with('valImage', $valImage)->with('userProfile', $userProfile);*/
+        return redirect()->back()->withSuccess('Upload image successful')
+        ->with('valImage', $valImage)->with('userProfile', $userProfile);
     }
 
 }

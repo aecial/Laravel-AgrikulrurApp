@@ -108,7 +108,7 @@
               aria-expanded="false"
             >
               <img
-                src="../assets/Teddy.jpg"
+                src="images/profiles/{{Auth::user()->profile_img}}"
                 class="rounded-circle object-fit-fill"
                 width="100%"
                 height="100%"

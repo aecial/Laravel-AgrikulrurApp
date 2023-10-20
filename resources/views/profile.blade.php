@@ -47,7 +47,7 @@
         <img src="images/profiles/{{ \Session::get('userProfile')}}" alt="">-->
 
           <img
-            src="images/profiles/userProfile{{ Auth::user()->name}}.png"
+            src="images/profiles/{{Auth::user()->profile_img}}"
             class="rounded-circle object-fit-fill"
             style="width: 35rem; height: 35rem"
             alt=""
@@ -56,19 +56,20 @@
           <label for="change-prof" class="md-title mt-5"
             >Change Profile Picture</label
           >
-          <form action="" class="w-755">
+          <form action="{{ route('update_profile_image')}}" class="w-755" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="input-group">
               <input
                 type="file"
                 class="form-control bg-transparent"
                 id="change-prof"
                 accept="image/png, image/jpeg"
+                name="update_image"
               />
               <button
                 type="submit"
                 class="btn btn-success"
                 id="save-img-btn"
-                disabled
                 onclick="saveProfPic()"
               >
                 Save

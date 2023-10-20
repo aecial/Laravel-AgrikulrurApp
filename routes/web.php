@@ -71,6 +71,7 @@ Route::get('/confirm_payment' ,[AuctionsControll::class , 'confirm_payment']);
 Route::get('/checkout_farmer' ,[AuctionsControll::class , 'checkout_farmer']);
 Route::get('/bidder_payment' ,[AuctionsControll::class , 'bidder_payment']);
 Route::get('/finished' ,[AuctionsControll::class , 'finished']);
+Route::post('/update_profile_image' ,[ImageController::class ,'update_profile_image'])->name('update_profile_image');
 
 
 Route::controller(ImageController::class)->group(function(){

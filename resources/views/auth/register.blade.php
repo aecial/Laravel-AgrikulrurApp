@@ -179,7 +179,6 @@
                                     required
                                     name="address"
                                     value="{{ old('address') }}"
-                                    disabled
                                     />
                                     <label for="address">Address</label>
                                 </div>

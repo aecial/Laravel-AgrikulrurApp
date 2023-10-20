@@ -101,18 +101,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'user_type' => $data['user_type'],
-            'password' => Hash::make($data['password']),
-        ]);
-        $valImage = 'valUser'.'.'.$data->valImage->extension();
-        $userProfile = 'userProfile'.'.'.$data->userProfile->extension();
+        $valImage = 'valUser'.$data['name'].'.'.$data['valImage']->extension();
+        $userProfile = 'userProfile'.$data['name'].'.'.$data['userProfile']->extension();
 
         $data['valImage']->move(public_path('images'), $valImage);
         $data['userProfile']->move(public_path('images/profiles'), $userProfile);
+
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'user_type' => $data['user_type'],
+            'val_img' => $valImage,
+            'profile_img' => $userProfile,
+        ]);
+
+       
 
         //return response()->json($data);
 
