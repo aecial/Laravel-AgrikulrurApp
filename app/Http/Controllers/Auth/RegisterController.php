@@ -49,14 +49,49 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        /*$data()->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|max:11|unique:users',
+            'user_type' => 'required|string|max:2',
+            'password' => 'required|string|min:8|confirmed',
+
+            'valImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'userProfile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ]);*/
+        
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:11', 'unique:users'],
             'user_type' => ['required', 'string', 'max:2'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+
+            'valImage' => ['required','image','mimes:jpeg,jpg,png,gif,svg','max:2048'],
+            'userProfile' => ['required','image','mimes:jpeg,jpg,png,gif,svg','max:2048'],
         ]);
+        
     }
+
+    /*public function image_upload(Request $request)
+    {
+        $request->validate([
+            'valImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'userProfile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ]);
+
+        $valImage = 'valUser'.'.'.$request->valImage->extension();
+        $userProfile = 'userProfile'.'.'.$request->userProfile->extension();
+
+        $request->valImage->move(public_path('images'), $valImage);
+        $request->userProfile->move(public_path('images/profiles'), $userProfile);
+
+        /*return redirect()->back()->withSuccess('Upload image successful')
+        ->with('valImage', $valImage)->with('userProfile', $userProfile);*
+    }*/
+
+
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -73,5 +108,13 @@ class RegisterController extends Controller
             'user_type' => $data['user_type'],
             'password' => Hash::make($data['password']),
         ]);
+        $valImage = 'valUser'.'.'.$data->valImage->extension();
+        $userProfile = 'userProfile'.'.'.$data->userProfile->extension();
+
+        $data['valImage']->move(public_path('images'), $valImage);
+        $data['userProfile']->move(public_path('images/profiles'), $userProfile);
+
+        //return response()->json($data);
+
     }
 }

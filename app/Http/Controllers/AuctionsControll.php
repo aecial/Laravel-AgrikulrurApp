@@ -190,7 +190,7 @@ class AuctionsControll extends Controller
         User::where('id', Auth::user()->id)
         ->update(['name' => $fname, 'email' => $email, 'phone' => $phone]);
 
-        return back()->with('status', 'New Auction has been added');
+        return back()->with('success', 'Updated successfully');
 
         /*$user = new User();
         $user->fname = $request->input('fname');

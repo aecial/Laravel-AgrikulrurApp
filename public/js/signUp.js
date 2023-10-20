@@ -13,7 +13,7 @@ function radioChange(val) {
     const cred = document.getElementById("credentials");
     if (val === "farmer") {
         formText.innerText = `Enter RSBSA Number: `;
-        cred.type = "number";
+        cred.type = "file";
     } else {
         formText.innerText = "Upload Valid ID: ";
         cred.type = "file";

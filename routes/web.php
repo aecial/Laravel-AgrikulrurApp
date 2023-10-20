@@ -7,6 +7,7 @@ use App\Http\Controllers\CropsController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AuctionsControll;
 use App\Http\Controllers\testMessageControl;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeEventController;
 use Illuminate\Support\Facades\Auth;
@@ -70,6 +71,13 @@ Route::get('/confirm_payment' ,[AuctionsControll::class , 'confirm_payment']);
 Route::get('/checkout_farmer' ,[AuctionsControll::class , 'checkout_farmer']);
 Route::get('/bidder_payment' ,[AuctionsControll::class , 'bidder_payment']);
 Route::get('/finished' ,[AuctionsControll::class , 'finished']);
+
+
+Route::controller(ImageController::class)->group(function(){
+    Route::get('image_upload', 'view_image');
+    Route::post('image_upload', 'image_upload')->name('image.store');
+});
+
 
 
 /*Route::get('/playground', function () {

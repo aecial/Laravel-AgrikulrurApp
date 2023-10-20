@@ -41,8 +41,13 @@
         <div
           class="col d-flex flex-column align-items-center justify-content-center img-section"
         >
+
+
+        <!-- <img src="images/{{ \Session::get('valImage')}}" alt=""> 
+        <img src="images/profiles/{{ \Session::get('userProfile')}}" alt="">-->
+
           <img
-            src="../assets/avatar1.svg"
+            src="images/profiles/userProfile{{ Auth::user()->name}}.png"
             class="rounded-circle object-fit-fill"
             style="width: 35rem; height: 35rem"
             alt=""

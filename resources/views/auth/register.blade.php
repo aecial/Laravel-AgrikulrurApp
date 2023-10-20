@@ -39,7 +39,7 @@
                     <small class="mb-2">Personal Information</small>
                 </div>
 
-                <form onsubmit="signUp()" class="form" id="form-true" action="{{ route('register') }}" method="POST">
+                <form onsubmit="signUp()" class="form" id="form-true" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                         <div class="row row-cols-1 row-cols-md-2 name_row">
                             <div class="col mb-2">
@@ -233,9 +233,9 @@
                                 class="form-control"
                                 id="credentials"
                                 
-                                name="validation_img1"
-                                value="{{ old('validation_img1') }}"
-                                disabled
+                                name="valImage"
+                                value="{{ old('valImage') }}"
+                          
                             />
                             </div>
                         </div>
@@ -253,9 +253,9 @@
                                 id="pic-sign-up"
                                 accept="image/png, image/jpeg"
                                 
-                                name="validation_img2"
-                                value="{{ old('validation_img2') }}"
-                                disabled
+                                name="userProfile"
+                                value="{{ old('userProfile') }}"
+                                
                             />
                             </div>
                         </div>
