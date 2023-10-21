@@ -45,6 +45,9 @@ Route::get('/second', function () {
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/pending', function () {
+    return view('pending');
+});
 
 Auth::routes();
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('home');
