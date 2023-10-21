@@ -83,7 +83,7 @@
           <form action="{{ route('update_info') }}" method="POST" class="fs-5 information-section p-4" id="info-form">
           @csrf
           <p class="title text-light">Personal Information</p>
-            <!--First Name Information-->
+            <!--Full Name Information-->
             <div class="d-flex mb-3">
               <input
                 type="text"
@@ -103,29 +103,7 @@
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
             </div>
-            <!--First Name Information-->
-
-            <!--Last Name Information-->
-            <div class="d-flex mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="lname_inp"
-                placeholder="{{ Auth::user()->lname }}"
-                onchange="boom()"
-                name="lname"
-                disabled
-              />
-              <button
-                class="edit-btn text-success"
-                id="edit-info-btn"
-                type="button"
-                onclick='ror("lname_inp")'
-              >
-                <i class="fa-solid fa-pen-to-square"></i>
-              </button>
-            </div>
-            <!--Last Name Information-->
+            <!--Full Name Information-->
 
             <!--Email Information-->
             <div class="d-flex mb-3">
