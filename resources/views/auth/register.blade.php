@@ -41,7 +41,7 @@
 
                 <form onsubmit="signUp()" class="form" id="form-true" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                        <div class="row row-cols-1 row-cols-md-2 name_row">
+                        <div class="row row-cols-1 name_row">
                             <div class="col mb-2">
                                 <div class="form-floating">
                                     <input
@@ -60,23 +60,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
-                                    <label for="fname">First Name</label>
-                                </div>
-                            </div>
-
-                            <div class="col mb-2">
-                                <div class="form-floating">
-                                    <input
-                                    type="text"
-                                    class="form-control"
-                                    id="lname"
-                                    name="lname"
-                                    placeholder="Put Last Name Here"
-                                    value="{{ old('lname') }}"
-                                    required
-                                    disabled
-                                    />
-                                    <label for="fname">Last Name</label>
+                                    <label for="fname">Full Name</label>
                                 </div>
                             </div>
                         </div>
