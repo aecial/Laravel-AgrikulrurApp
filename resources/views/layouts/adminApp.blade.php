@@ -67,6 +67,18 @@
                 href="../pages/Login.html"
                 ><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a
               >
+              <!-- Logout from built-in auth on laravel -->
+              <a 
+                class="btn btn-success w-auto fs-3 d-block d-xxl-none float-end"
+                href="{{ route('logout') }}" 
+                      onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();"
+                    ><i class="fa-solid fa-right-from-bracket"></i>{{ __('Sign Out') }}</a
+                  >
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                  <!-- end > Logout from built-in auth on laravel -->
             </li>
           </ul>
           <div class="nav-pic d-none d-xxl-block btn-group dropdown">
@@ -85,9 +97,16 @@
               id="dropdown-menu"
               aria-labelledby="dropdownMenuButton"
             >
-              <a class="btn btn-success w-100 fs-3" href="../pages/Login.html"
-                ><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a
-              >
+                <!-- Logout from built-in auth on laravel -->
+                <a class="btn btn-success w-100 fs-3" href="{{ route('logout') }}" 
+                      onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();"
+                    ><i class="fa-solid fa-right-from-bracket"></i>{{ __('Sign Out') }}</a
+                  >
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                  <!-- end > Logout from built-in auth on laravel -->
             </div>
           </div>
         </div>
