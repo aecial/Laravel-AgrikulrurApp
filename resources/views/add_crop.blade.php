@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.adminApp')
 
-@section('content')
+@section('admin')
   <title>Create New Auction</title>
     <!-- Boostrap CSS -->
     <link

@@ -2,6 +2,7 @@
 
 use App\Events\ChatMessageEvent;
 use App\Events\PlaygroundEvent;
+use App\Http\Controllers\AdminContoller;
 use App\Http\Controllers\bidsControl;
 use App\Http\Controllers\CropsController;
 use App\Http\Controllers\MessageController;
@@ -76,6 +77,8 @@ Route::get('/bidder_payment' ,[AuctionsControll::class , 'bidder_payment']);
 Route::get('/finished' ,[AuctionsControll::class , 'finished']);
 Route::post('/update_profile_image' ,[ImageController::class ,'update_profile_image'])->name('update_profile_image');
 
+//For Admin routes
+Route::get('/admin' ,[AdminContoller::class , 'admin']);
 
 Route::controller(ImageController::class)->group(function(){
     Route::get('image_upload', 'view_image');
