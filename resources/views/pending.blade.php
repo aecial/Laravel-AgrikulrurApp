@@ -32,14 +32,14 @@
           />
         </div>
         <!--Form Container-->
-        <div class="col mx-auto">
-          <h1 class="form-label text-center">Your reuqest is being process</h1>
-          <br><br>
-          <strong>Wait for the admin to activate your account. <br>Try to login after 1 hour. </strong>
-          <br><br><br>
-          <small
-            >Let's try to login? <a href="{{ route('login') }}">Login</a></small
-          >
+        <div class="col mx-auto p-4 d-flex flex-column justify-content-center border border-black">
+            <h1 class="form-label text-center text-underline">Your request is being processed</h1>
+            <br>
+            <p class="fw-bold">Wait for the admin to activate your account. <br>Try logging in after 1 hour.</p>
+            <br>
+            <small
+              class="text-end">Try to login? <a href="{{ route('login') }}">Login</a></small
+            >
         </div>
        
       </div>
