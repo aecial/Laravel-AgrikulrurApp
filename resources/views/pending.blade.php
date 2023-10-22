@@ -33,7 +33,7 @@
         </div>
         <!--Form Container-->
         <div class="col mx-auto p-4 d-flex flex-column justify-content-center border border-black">
-            <h1 class="form-label text-center text-underline">Your request is being processed</h1>
+            <h1 class="form-label text-center text-underline text-success">Your request is being processed</h1>
             <br>
             <p class="fw-bold">Wait for the admin to activate your account. <br>Try logging in after 1 hour.</p>
             <br>
