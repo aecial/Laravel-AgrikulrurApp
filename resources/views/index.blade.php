@@ -106,14 +106,7 @@
         <p class="title">
           What is <span class="text-success">Agrikultur’App?</span>
         </p>
-        <iframe
-          class="embedded mb-2 mb-md-4"
-          src="https://www.youtube.com/embed/97JZMrnRnYM?si=juoUFIBbIWis2WJC"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+        <iframe class="embedded mb-2 mb-md-4" src="https://www.youtube.com/embed/RMGKVDyr678?si=jZLErPdyWJ1RV-q_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         <a
           href="{{ route('register') }}"
           class="btn btn-success border-black d-block d-sm-inline-block started"
