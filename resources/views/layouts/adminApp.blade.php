@@ -62,11 +62,6 @@
             </li>
 
             <li class="nav-item me-2">
-              <a
-                class="btn btn-success w-auto fs-3 d-block d-xxl-none float-end"
-                href="../pages/Login.html"
-                ><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a
-              >
               <!-- Logout from built-in auth on laravel -->
               <a 
                 class="btn btn-success w-auto fs-3 d-block d-xxl-none float-end"
