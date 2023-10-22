@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone', 11);
             $table->string('address')->unique();
             $table->string('user_type', 2);
+            $table->string('status', 1);
             $table->string('val_img')->unique();
             $table->string('profile_img')->unique();
             $table->timestamp('email_verified_at')->nullable();
