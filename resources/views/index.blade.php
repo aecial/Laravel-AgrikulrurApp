@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Landing Page</title>
+    <title>Agrikultur'App</title>
+    <meta name="description" content="Online Agricultural Produce Auction in the Philippines">
+    <meta name="keywords" content="Agrikulturapp, agrikulturapp, Produce Auction, Online Produce Auction, Agrikultura, Philippines, Agriculture">
     <link rel="stylesheet" href="../css/styles.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
