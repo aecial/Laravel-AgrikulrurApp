@@ -1,37 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Page</title>
-    <link rel="stylesheet" href="../stylings/Admin.css" />
-    <!-- Boostrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
-    <!--Font Links-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
-      rel="stylesheet"
-    />
-    <!--Font Links-->
+
   </head>
   <body>
     <!--Navigation Bar-->
@@ -71,7 +41,7 @@
                 class="nav-link text-success"
                 id="nav-link"
                 aria-current="page"
-                href="AuctionPage.html"
+                href="{{url('manageAuctions')}}"
                 ><i class="fa-solid fa-gavel"></i> Manage Auction</a
               >
             </li>
@@ -80,7 +50,7 @@
                 class="nav-link text-success"
                 id="nav-link"
                 aria-current="page"
-                href="AuctionPage.html"
+                href="{{url('manageUsers')}}"
                 ><i class="fa-solid fa-users"></i> Manage Users</a
               >
             </li>

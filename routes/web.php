@@ -79,6 +79,13 @@ Route::post('/update_profile_image' ,[ImageController::class ,'update_profile_im
 
 //For Admin routes
 Route::get('/admin' ,[AdminContoller::class , 'admin']);
+Route::get('/manageAuctions' ,[AdminContoller::class , 'manageAuctions']);
+Route::get('/rmAuction' ,[AdminContoller::class , 'rmAuction']);
+Route::get('/manageUsers' ,[AdminContoller::class , 'manageUsers']);
+Route::get('/banUser' ,[AdminContoller::class , 'banUser']);
+Route::get('/activateUsers' ,[AdminContoller::class , 'activateUsers']);
+Route::get('/activate' ,[AdminContoller::class , 'activate']);
+Route::get('/rejectUser' ,[AdminContoller::class , 'rejectUser']);
 
 Route::controller(ImageController::class)->group(function(){
     Route::get('image_upload', 'view_image');

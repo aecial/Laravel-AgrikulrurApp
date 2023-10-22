@@ -56,7 +56,7 @@
                 class="img-fluid d-none d-lg-block"
                 src="../assets/manageAuctions.svg"
               />
-              <a href="ManageAuctions.html" class="btn btn-success link-btn"
+              <a href="{{url('manageAuctions')}}" class="btn btn-success link-btn"
                 >Manage Auctions</a
               >
             </div>
@@ -69,7 +69,7 @@
                 class="img-fluid d-none d-lg-block"
                 src="../assets/manageUsers.svg"
               />
-              <a href="ManageUsers.html" class="btn btn-success link-btn"
+              <a href="{{url('manageUsers')}}" class="btn btn-success link-btn"
                 >Manage Users</a
               >
             </div>
