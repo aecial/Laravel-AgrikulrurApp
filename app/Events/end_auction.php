@@ -44,7 +44,7 @@ class end_auction implements ShouldBroadcast
             'auction' => $this->auction_id,
             'crop' => $this->crop_id,
             'creator' => $this->creator_id,
-            'user_id' => $this->bidder_id
+            'bidder' => $this->bidder_id
         ];
     }
         public function broadcastOn():array

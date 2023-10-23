@@ -71,7 +71,7 @@ class AuctionsControll extends Controller
         $cropinfo = crops::all();
         return view('guidelines', compact('cropinfo'));
     }
-    public function notifications(Request $request)
+    public function notifications()
     {
   
        
@@ -79,17 +79,18 @@ class AuctionsControll extends Controller
         {
             $toThisUser = Auth::user()->id;
             $notif = farmerNotif::where('creator_id', $toThisUser)->get();
-            $farmer_conpay = pending_transactions::where('creator_status', 'not_paid')->get();
+            $farmer_conpay = pending_transactions::where('creator_id', $toThisUser)->where('creator_status', 'not_paid')->get();
         
                 return view('notifications', compact('notif', 'farmer_conpay'))->with('noti', 'autions fetched!');
 
         }
-        elseif(Auth::user()->user_type == '3')
+        if(Auth::user()->user_type == '3')
         {
             $toThisUser = Auth::user()->id;
             $notif = consNotif::where('bidder_id', $toThisUser)->get();
+            $consumer_conpay = pending_transactions::where('bidder_id', $toThisUser)->where('creator_status', 'paid')->get();
             
-                return view('notifications', compact('notif'))->with('noti', 'autions fetched!');
+                return view('notifications', compact('notif', 'consumer_conpay'))->with('noti', 'autions fetched!');
     
         }
    
@@ -159,9 +160,10 @@ class AuctionsControll extends Controller
                 'bidder_status' => 'paid',
                 'status' => 'pending',
             ]);
+            $consumer_conpay = pending_transactions::where('bidder_id', Auth::user()->id)->where('creator_status', 'paid')->get();
             $notif = consNotif::where('bidder_id', Auth::user()->id)->get();
 
-            return view('notifications', compact('notif'));
+            return view('notifications', compact('notif', 'consumer_conpay'));
         }
         
     }
