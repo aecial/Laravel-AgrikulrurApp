@@ -103,6 +103,7 @@
                   </thead>
                   <tbody id="tbody1">
                   @if(!empty($bids))
+                  @if(!empty($bidders))
                   
                     @foreach($bids as $bid) 
                     @foreach($bidders as $bidder)
@@ -121,6 +122,7 @@
                     </tr>
                     @endforeach
                   @endforeach
+                  @endif
                   @endif
 
                   </tbody>
@@ -316,10 +318,34 @@
 
                         @endif
                     
-                   
-                        @foreach($bidders as $bidder)
-                          
-                        @endforeach
+
+
+                        @if(!empty($bids))
+
+
+                    @foreach($bidders as $bidder)
+                    @foreach($bids as $bid) 
+                    
+                        <h1>{{ $bidder->profile_img }}</h1>
+                        <br>
+                        <h1>{{ $bid->user_id }}</h1>
+                        <h1>{{ $bidder->name }}</h1>
+                     
+                    
+                    @endforeach
+                  @endforeach
+                  @endif
+
+
+
+
+
+
+                        @if(!empty($bidders))
+                          @foreach($bidders as $bidder)
+                            
+                          @endforeach
+                        @endif
                 </div>
               </div>
             </div>
@@ -463,7 +489,7 @@
         imagecol.classList.add("text-center");
 
         let image = document.createElement("img");
-        image.src = "/images/profiles/{{ $bidder->profile_img }}";
+        image.src = "/images/profiles/ @if(!empty($bidders)){{ $bidder->profile_img }}@endif";
         image.classList.add("rounded-circle");
         image.id = "table-img";
         imagecol.appendChild(image);

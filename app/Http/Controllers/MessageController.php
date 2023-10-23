@@ -107,7 +107,10 @@ public function sendBid(Request $request)
         //$bids = DB::table('bid')->select('bids')->orderBy('bids', 'desc')->first();
 
         $bids = bids::where('auction_id', $on_auction)->orderBy('bid_amount', 'desc')->get();
-        $auctions = auctions::where('auction_id', $on_auction)->get();//->value('auction_id');
+        $auctions = auctions::where('auction_id', $on_auction)->get();
+        //$bidders = array();//->value('auction_id');
+        $bidInfo = array();
+        array_push($bidInfo, $bids);
         foreach($auctions as $auction)
         {
             $creator = User::where('id', $auction->user_id)->get();
@@ -115,6 +118,19 @@ public function sendBid(Request $request)
         foreach($bids as $bid)
         {
             $bidders = User::where('id', $bid->user_id)->get();
+            
+            foreach( $bidders as $bidder)
+            {
+                $bidderName['name'] = $bidder->name;
+            }
+            /*$i = 1;
+            while($i >= count($bidders))
+            {
+                $bidderName[$i] = $bidders[0]->name;
+                ++$i;
+            }*/
+           
+            array_push($bidInfo, $bidderName);
         }
         $highestbid = bids::where('auction_id', $on_auction)->get('bid_amount')->max();
         //$highestbid = DB::table('bids')->max('bid_amount');
@@ -124,7 +140,20 @@ public function sendBid(Request $request)
             if($auctions->status = 'closed')
             {
                 //return Redirect()->to('bidding')->with('closed', 'This auction is completed!');
-                return view('bidding', compact('bids','auctions', 'highestbid', 'creator', 'bidders'))->with('success', 'highest bid fetched');
+                //return view('bidding', compact('bids','auctions', 'highestbid', 'creator', 'bidders'))->with('success', 'highest bid fetched');
+                //foreach($bidders as $bidder)
+                //{
+                //    return response()->json($bidders);
+               // }
+                foreach($bids as $bid)
+                {
+                    foreach($bidInfo as $info)
+                    {
+                        return response()->json($bidderName['name'].$bid->bid_amount);
+                    }
+
+                }
+                
             }
             return view('bidding', compact('bids','auctions', 'highestbid', 'creator', 'bidders'))->with('success', 'highest bid fetched');
             
