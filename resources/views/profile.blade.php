@@ -84,12 +84,12 @@
           @csrf
           <p class="title text-light">Personal Information</p>
           <button
-                class="btn text-success"
+                class="btn text-light fs-2 d-flex justify-content-end align-items-center"
                 id="edit-info-btn"
                 type="button"
                 onclick='ror("name_inp"),ror("email_inp"),ror("address_inp"),ror("mobileNum_inp")'
               >
-                <i class="fa-solid fa-pen-to-square">Edit</i>
+                <i class="fa-solid fa-pen-to-square"></i> Edit
               </button>
             <!--Full Name Information-->
             <div class="d-flex mb-3">
