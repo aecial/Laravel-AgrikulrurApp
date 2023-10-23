@@ -14,6 +14,7 @@ use App\Models\notifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AuctionsControll extends Controller
 {
@@ -46,15 +47,22 @@ class AuctionsControll extends Controller
     public function auctions(Request $request)
     {
         $type = $request->input('type');
-        $auctions = auctions::where('crop_id', $type)->get();
-        
-        $arr = array();
-        foreach($auctions as $auction)
-        {
-            $bids = bids::where('auction_id', $auction->auction_id)->get('bid_amount')->max();
-            array_push($arr, $bids, $auctions);
-        }
-        return view('auctionpage', compact('auctions', 'bids', 'arr'));
+
+        $auctionData = auctions::select(
+            'auctions.auction_id',
+            'auctions.crop_id',
+            'auctions.crop_volume',
+            'auctions.starting_price',
+            'users.name as user_id',
+            DB::raw('COALESCE(MAX(bids.bid_amount), auctions.starting_price) as latest_bid_price')
+        )
+            ->join('users', 'auctions.user_id', '=', 'users.id')
+            ->leftJoin('bids', 'auctions.auction_id', '=', 'bids.auction_id')
+            ->where('auctions.crop_id', $type)
+            ->groupBy('auctions.auction_id', 'auctions.crop_id', 'auctions.crop_volume', 'auctions.starting_price', 'users.name')
+            ->get();
+
+            return view('auctionpage', compact('auctionData'));
         //return response()->json($arr[0]->bid_amount);
         //return response()->json($arr[0]->bid_amount);
     }

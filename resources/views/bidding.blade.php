@@ -49,20 +49,21 @@
           <div class="row bg-light row-cols-2 p-2">
             <div class="col border-end border-black">
               <p class="mt-2">Creator</p>
-              @foreach($creator as $farmer)
+                @foreach($creator as $farmer)
                     <div class="d-flex align-items-center">
                       <img
                         src="/images/profiles/{{ $farmer->profile_img }}"
                         alt=""
                         class="rounded-circle m-2"
                         style="width: 50px"
-                    />
-              @endforeach
+                      />
+             
 
-                <p class="fs-5 fw-bold">@foreach($creator as $farmer){{ $farmer->name }} @endforeach</p>
+                    <p class="fs-5 fw-bold">{{ $farmer->name }}</p>
 
-                <!-- <p class="fs-5 fw-bold">Darren Ventura</p> -->
-              </div>
+                      <!-- <p class="fs-5 fw-bold">Darren Ventura</p> -->
+                    </div>
+                  @endforeach
               <p>Base Bid Price: 
 
                @foreach($auctions as $auction)
@@ -102,27 +103,23 @@
                     </tr>
                   </thead>
                   <tbody id="tbody1">
-                  @if(!empty($bids))
-                  @if(!empty($bidders))
                   
+                  @if(!empty($bids))            
                     @foreach($bids as $bid) 
-                    @foreach($bidders as $bidder)
                     <tr>
                         <td class="text-center">
                           <img
-                            src="/images/profiles/{{ $bidder->profile_img }}"
+                            src="/images/profiles/{{ $bid->profile_img }}"
                             alt=""
                             class="rounded-circle"
                             id="table-img"
                           />
                         </td>
-                        <td>{{ $bid->user_id }}</td>
+                        <td>{{ $bid->name }}</td>
                         <td>₱ {{ $bid->bid_amount }}</td>
-                        <td>{{ $bidder->profile_img }}</td>
+                        <td>{{ $bid->created_at }}</td>
                     </tr>
                     @endforeach
-                  @endforeach
-                  @endif
                   @endif
 
                   </tbody>
@@ -181,19 +178,22 @@
               <div
                 class="d-flex justify-content-center align-items-center gap-5"
               >
+              @foreach($creator as $farmer)
                 <div class="d-flex align-items-center">
                   <img
-                    src="../assets/devTeam/Darren.png"
+                    src="/images/profiles/{{ $farmer->profile_img }}"
                     alt=""
                     class="rounded-circle m-2"
                     style="width: 50px"
                   />
-                  @foreach($auctions as $auction)
-                    <p class="desc fw-bold">{{ $auction->user_id }}</p>
+
+                  
+                    <p class="desc fw-bold">{{ $farmer->name }}</p>
                     <!-- <p class="fs-5 fw-bold"></p> -->
-                  @endforeach
+                  
                   <!-- <p class="desc fw-bold">Darren Ventura</p> -->
                 </div>
+                @endforeach
                 <h1>|</h1>
                 <h1>
                   Auction Id:
@@ -266,13 +266,13 @@
                         <tr>
                           <td class="text-center">
                             <img
-                              src="/images/profiles/{{ $farmer->profile_img }}"
+                              src="/images/profiles/{{ $bid->profile_img }}"
                               alt=""
                               class="rounded-circle"
                               id="table-img"
                             />
                           </td>
-                          <td>{{ $bid->user_id }}</td>
+                          <td>{{ $bid->name }}</td>
                           <td>₱ {{ $bid->bid_amount }}</td>
                           <td>{{ $bid->created_at }}</td>
                         </tr>
@@ -317,30 +317,7 @@
                           <!-- </form> -->
 
                         @endif
-                    
-
-
-                        @if(!empty($bids))
-
-
-                    @foreach($bidders as $bidder)
-                    @foreach($bids as $bid) 
-                    
-                        <h1>{{ $bidder->profile_img }}</h1>
-                        <br>
-                        <h1>{{ $bid->user_id }}</h1>
-                        <h1>{{ $bidder->name }}</h1>
-                     
-                    
-                    @endforeach
-                  @endforeach
-                  @endif
-
-
-
-
-
-
+    
                         @if(!empty($bidders))
                           @foreach($bidders as $bidder)
                             
@@ -482,6 +459,7 @@
         // Update UI with received message
         let inputPrice2 = data.message;
         let bidder_id = data.bidder;
+        let profile_img = data.profile_img;
 
         let row = document.createElement("tr");
 
@@ -489,7 +467,7 @@
         imagecol.classList.add("text-center");
 
         let image = document.createElement("img");
-        image.src = "/images/profiles/ @if(!empty($bidders)){{ $bidder->profile_img }}@endif";
+        image.src = `${profile_img}`;
         image.classList.add("rounded-circle");
         image.id = "table-img";
         imagecol.appendChild(image);

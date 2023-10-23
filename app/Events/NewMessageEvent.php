@@ -20,11 +20,14 @@ class NewMessageEvent implements ShouldBroadcast
     public $message;
     public $channel;
     public $bidder;
-    public function __construct($messages, $channel, $bidder)
+
+    public $profile_img;
+    public function __construct($messages, $channel, $bidder, $profile_img)
     {
         $this->message = $messages;
         $this->channel = $channel;
         $this->bidder = $bidder;
+        $this->profile_img = $profile_img;
     }
 
     /**
@@ -41,6 +44,7 @@ class NewMessageEvent implements ShouldBroadcast
         return [
             'message' => $this->message,
             'bidder' => $this->bidder,
+            'profile_img'=> $this->profile_img
             //'user' => auth()->user()->name,
         ];
     }

@@ -41,6 +41,7 @@ public function sendMessage(Request $request)
             $channel = $request->input('channel');
             $bidder = $request->input('bidder');
             $user = Auth::user();
+            $profile_img = "/images/profiles/".Auth::user()->profile_img;
     
             // Process the message, perform any validations, database operations, etc.
     
@@ -57,7 +58,7 @@ public function sendMessage(Request $request)
             //return ['status' => 'Message Sent!'];
             if($bids)
             {
-                event(new NewMessageEvent($message, $channel, Auth::user()->name));
+                event(new NewMessageEvent($message, $channel, $user['name'], $profile_img));
                 return response()->json([$message => true]);
             }
             else
@@ -103,9 +104,25 @@ public function sendMessage(Request $request)
 public function sendBid(Request $request)
     {
         $on_auction = $request->input('auction_id');
+
+        $bids = bids::select('bids.bid_id', 'users.name', 'bids.bid_amount','users.profile_img', 'bids.created_at')
+        ->join('users', 'bids.user_id', '=', 'users.id')
+        ->where('bids.auction_id', $on_auction)
+        ->orderBy('bid_amount', 'desc')
+        ->get();
+
+        $auctions = auctions::where('auction_id', $on_auction)->get();
+        $highestbid = bids::where('auction_id', $on_auction)->get('bid_amount')->max();
+        foreach($auctions as $auction)
+        {
+            $creator = User::where('id', $auction->user_id)->get();
+        }
+        return view('bidding', compact('bids','auctions', 'highestbid', 'creator'))->with('success', 'highest bid fetched');
+
         //$bids = bid::get('bids');
         //$bids = DB::table('bid')->select('bids')->orderBy('bids', 'desc')->first();
 
+        /*
         $bids = bids::where('auction_id', $on_auction)->orderBy('bid_amount', 'desc')->get();
         $auctions = auctions::where('auction_id', $on_auction)->get();
         //$bidders = array();//->value('auction_id');
@@ -123,12 +140,12 @@ public function sendBid(Request $request)
             {
                 $bidderName['name'] = $bidder->name;
             }
-            /*$i = 1;
-            while($i >= count($bidders))
+            /*$i = 0;
+            while($i <= count($bidders))
             {
-                $bidderName[$i] = $bidders[0]->name;
+                $bidderName['name'] = $bidders[0]->name;
                 ++$i;
-            }*/
+            }*-here
            
             array_push($bidInfo, $bidderName);
         }
@@ -140,19 +157,23 @@ public function sendBid(Request $request)
             if($auctions->status = 'closed')
             {
                 //return Redirect()->to('bidding')->with('closed', 'This auction is completed!');
-                //return view('bidding', compact('bids','auctions', 'highestbid', 'creator', 'bidders'))->with('success', 'highest bid fetched');
+                return view('bidding', compact('bids','auctions', 'highestbid', 'creator', 'bidders','bidderName', 'bidInfo'))->with('success', 'highest bid fetched');
                 //foreach($bidders as $bidder)
                 //{
                 //    return response()->json($bidders);
                // }
-                foreach($bids as $bid)
+
+              
+                /*foreach($bids as $bid)
                 {
                     foreach($bidInfo as $info)
                     {
-                        return response()->json($bidderName['name'].$bid->bid_amount);
+                        return response()->json($bidInfo);
+                        //$bidderName['name'].$bid->bid_amount
                     }
 
-                }
+                }*-here
+                
                 
             }
             return view('bidding', compact('bids','auctions', 'highestbid', 'creator', 'bidders'))->with('success', 'highest bid fetched');
@@ -161,7 +182,7 @@ public function sendBid(Request $request)
         else
         {
             return view('bidding', compact('bids','auctions', 'highestbid', 'creator'))->with('failed', 'No bids Yet!');
-        }
+        }*/
 
         
     }
@@ -172,6 +193,7 @@ public function sendBid(Request $request)
     public function auctions(Request $request)
     {
         $type = $request->input('type');
+        
         $auctions = auctions::where('crop_id', $type)->get();
         foreach($auctions as $auction)
         {
