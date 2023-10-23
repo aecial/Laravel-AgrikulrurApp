@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\auctions;
+use App\Models\crops;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -79,4 +80,31 @@ class AdminContoller extends Controller
 
         return redirect()->back()->with("success","User rejection");
     }
+    public function updateGuidelines()
+    {
+        $crops = crops::all();
+        return view("updateGuidelines", compact("crops"))->with("success","all crops");
+    }
+    public function updatePriceForm()
+    {
+        $crops = crops::all();
+        return view("updatePriceForm", compact("crops"))->with("success","all crops");
+    }
+    public function updatePrice(Request $request)
+    {
+        $i = 0;
+        while ($i <= count($_REQUEST))
+        {
+            crops::where('crop_id', $i)
+            ->update(['suggested_price' => $request->input($i)]);
+            $i++;
+        }
+
+        // crops::where('id', Auth::user()->id)
+        // ->update(['name' => $fname, 'email' => $email, 'phone' => $phone]);
+
+        return back()->with('success', 'Updated successfully');
+
+    }
+    
 }

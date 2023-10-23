@@ -55,7 +55,7 @@
               >
             </li>
             <li class="nav-item me-2">
-              <a class="nav-link text-success" href="#contact" id="nav-link"
+              <a class="nav-link text-success" href="{{url('updateGuidelines')}}" id="nav-link"
                 ><i class="fa-solid fa-table"></i> View/Update Pricing
                 Guidelines</a
               >

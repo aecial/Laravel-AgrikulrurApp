@@ -82,7 +82,7 @@
                 class="img-fluid d-none d-lg-block"
                 src="../assets/manageGuidelines.svg"
               />
-              <a href="UpdateGuidelines.html" class="btn btn-success link-btn"
+              <a href="{{url('updateGuidelines')}}" class="btn btn-success link-btn"
                 >View/Update Pricing</a
               >
             </div>

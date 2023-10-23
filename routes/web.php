@@ -86,6 +86,10 @@ Route::get('/banUser' ,[AdminContoller::class , 'banUser']);
 Route::get('/activateUsers' ,[AdminContoller::class , 'activateUsers']);
 Route::get('/activate' ,[AdminContoller::class , 'activate']);
 Route::get('/rejectUser' ,[AdminContoller::class , 'rejectUser']);
+Route::get('/updateGuidelines' ,[AdminContoller::class , 'updateGuidelines']);
+Route::get('/updatePriceForm' ,[AdminContoller::class , 'updatePriceForm']);
+Route::get('/updatePrice' ,[AdminContoller::class , 'updatePrice'])->name('updatePrice');
+
 
 Route::controller(ImageController::class)->group(function(){
     Route::get('image_upload', 'view_image');
