@@ -95,7 +95,7 @@
                   type="button"
                   class="btn btn-success"
                   data-bs-toggle="modal"
-                  data-bs-target="#{{ $user->name}}"
+                  data-bs-target="#{{ $user->id}}"
                 >
                   Activate User
                 </button>
@@ -104,15 +104,15 @@
               <!-- Modal -->
               <div
                 class="modal fade"
-                id="{{ $user->name}}"
+                id="{{ $user->id}}"
                 tabindex="-1"
-                aria-labelledby="{{ $user->name}}Label"
+                aria-labelledby="{{ $user->id}}Label"
                 aria-hidden="true"
               >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-2" id="{{ $user->name}}Label">
+                      <h1 class="modal-title fs-2" id="{{ $user->id}}Label">
                         Account Details
                       </h1>
                       <button

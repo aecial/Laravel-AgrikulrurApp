@@ -83,25 +83,33 @@
           <form action="{{ route('update_info') }}" method="POST" class="fs-5 information-section p-4" id="info-form">
           @csrf
           <p class="title text-light">Personal Information</p>
+          <button
+                class="btn text-success"
+                id="edit-info-btn"
+                type="button"
+                onclick='ror("name_inp"),ror("email_inp"),ror("address_inp"),ror("mobileNum_inp")'
+              >
+                <i class="fa-solid fa-pen-to-square">Edit</i>
+              </button>
             <!--Full Name Information-->
             <div class="d-flex mb-3">
               <input
                 type="text"
                 class="form-control"
                 id="name_inp"
-                placeholder="{{ Auth::user()->name }}"
+                value="{{ Auth::user()->name }}"
                 onchange="boom()"
                 name="fname"
                 disabled
               />
-              <button
+              <!-- <button
                 class="edit-btn text-success"
                 id="edit-info-btn"
                 type="button"
                 onclick='ror("name_inp")'
               >
                 <i class="fa-solid fa-pen-to-square"></i>
-              </button>
+              </button>-->
             </div>
             <!--Full Name Information-->
 
@@ -111,19 +119,19 @@
                 type="text"
                 class="form-control"
                 id="email_inp"
-                placeholder="{{ Auth::user()->email }}"
+                value="{{ Auth::user()->email }}"
                 onchange="boom()"
                 name="email"
                 disabled
               />
-              <button
+              <!-- <button
                 class="edit-btn text-success"
                 id="edit-info-btn"
                 type="button"
                 onclick='ror("email_inp")'
               >
                 <i class="fa-solid fa-pen-to-square"></i>
-              </button>
+              </button>-->
             </div>
             <!--Email Information-->
 
@@ -133,19 +141,19 @@
                 type="text"
                 class="form-control"
                 id="address_inp"
-                placeholder="{{ Auth::user()->address }}"
+                value="{{ Auth::user()->address }}"
                 onchange="boom()"
                 name="address"
                 disabled
               />
-              <button
+              <!-- <button 
                 class="edit-btn text-success"
                 id="edit-info-btn"
                 type="button"
                 onclick='ror("address_inp")'
               >
                 <i class="fa-solid fa-pen-to-square"></i>
-              </button>
+              </button>-->
             </div>
             <!--Address Information-->
 
@@ -155,19 +163,19 @@
                 type="text"
                 class="form-control"
                 id="mobileNum_inp"
-                placeholder="{{ Auth::user()->phone }}"
+                value="{{ Auth::user()->phone }}"
                 onchange="boom()"
                 name="phone"
                 disabled
               />
-              <button
+              <!-- <button 
                 class="edit-btn text-success"
                 id="edit-info-btn"
                 type="button"
                 onclick='ror("mobileNum_inp")'
               >
                 <i class="fa-solid fa-pen-to-square"></i>
-              </button>
+              </button>-->
             </div>
             <!--Mobile Number Information-->
             <button

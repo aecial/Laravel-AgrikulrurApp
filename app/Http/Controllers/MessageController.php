@@ -57,7 +57,7 @@ public function sendMessage(Request $request)
             //return ['status' => 'Message Sent!'];
             if($bids)
             {
-                event(new NewMessageEvent($message, $channel, $bidder));
+                event(new NewMessageEvent($message, $channel, Auth::user()->name));
                 return response()->json([$message => true]);
             }
             else
@@ -112,6 +112,10 @@ public function sendBid(Request $request)
         {
             $creator = User::where('id', $auction->user_id)->get();
         }
+        foreach($bids as $bid)
+        {
+            $bidders = User::where('id', $bid->user_id)->get();
+        }
         $highestbid = bids::where('auction_id', $on_auction)->get('bid_amount')->max();
         //$highestbid = DB::table('bids')->max('bid_amount');
 
@@ -120,9 +124,9 @@ public function sendBid(Request $request)
             if($auctions->status = 'closed')
             {
                 //return Redirect()->to('bidding')->with('closed', 'This auction is completed!');
-                return view('bidding', compact('bids','auctions', 'highestbid', 'creator'))->with('success', 'highest bid fetched');
+                return view('bidding', compact('bids','auctions', 'highestbid', 'creator', 'bidders'))->with('success', 'highest bid fetched');
             }
-            return view('bidding', compact('bids','auctions', 'highestbid'))->with('success', 'highest bid fetched');
+            return view('bidding', compact('bids','auctions', 'highestbid', 'creator', 'bidders'))->with('success', 'highest bid fetched');
             
         }
         else

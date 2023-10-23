@@ -50,31 +50,13 @@
             <div class="col border-end border-black">
               <p class="mt-2">Creator</p>
               @foreach($creator as $farmer)
-                  @if($farmer->id == 1)
                     <div class="d-flex align-items-center">
                       <img
-                        src="../assets/devTeam/Denmark.jpg"
+                        src="/images/profiles/{{ $farmer->profile_img }}"
                         alt=""
                         class="rounded-circle m-2"
                         style="width: 50px"
                     />
-                    @elseif($farmer->id == 2)
-                    <div class="d-flex align-items-center">
-                      <img
-                        src="../assets/devTeam/Teddy.jpg"
-                        alt=""
-                        class="rounded-circle m-2"
-                        style="width: 50px"
-                    />
-                    @elseif($farmer->id == 3)
-                    <div class="d-flex align-items-center">
-                      <img
-                        src="../assets/devTeam/Darren.png"
-                        alt=""
-                        class="rounded-circle m-2"
-                        style="width: 50px"
-                    />
-                  @endif
               @endforeach
 
                 <p class="fs-5 fw-bold">@foreach($creator as $farmer){{ $farmer->name }} @endforeach</p>
@@ -98,14 +80,9 @@
               </div>
               <p class="mt-3">
                 Latest Bid Price:              
-
-                @if(Session::has('success'))
-                    <span class="fw-bold" id="lbp">{{ $highestbid->bid_amount }}</span>
-                @endif
-                @if(Session::has('failed'))
-                    <span class="fw-bold" id="lbp">{{Session::get('failed')}}</span>
-                @endif
-
+                  @if(!empty($highestbid))
+                    <span class="fw-bold" id="lbp3">{{ $highestbid->bid_amount }}</span>
+                  @endif
               </p>
             </div>
           </div>
@@ -125,11 +102,14 @@
                     </tr>
                   </thead>
                   <tbody id="tbody1">
-                  @foreach($bids as $bid) 
+                  @if(!empty($bids))
+                  
+                    @foreach($bids as $bid) 
+                    @foreach($bidders as $bidder)
                     <tr>
                         <td class="text-center">
                           <img
-                            src="/assets/Teddy.jpg"
+                            src="/images/profiles/{{ $bidder->profile_img }}"
                             alt=""
                             class="rounded-circle"
                             id="table-img"
@@ -137,76 +117,12 @@
                         </td>
                         <td>{{ $bid->user_id }}</td>
                         <td>₱ {{ $bid->bid_amount }}</td>
-                        <td>{{ $bid->created_at }}</td>
+                        <td>{{ $bidder->profile_img }}</td>
                     </tr>
+                    @endforeach
                   @endforeach
-  
-                    <!-- <tr>
-                      <td class="text-center">
-                        <img
-                          src="/assets/Teddy.jpg"
-                          alt=""
-                          class="rounded-circle"
-                          id="table-img"
-                        />
-                      </td>
-                      <td>Teddy Pascual</td>
-                      <td>420</td>
-                      <td>2023-1-2</td>
-                    </tr>
+                  @endif
 
-                    <tr>
-                      <td class="text-center">
-                        <img
-                          src="/assets/Teddy.jpg"
-                          alt=""
-                          class="rounded-circle"
-                          id="table-img"
-                        />
-                      </td>
-                      <td>Teddy Pascual</td>
-                      <td>420</td>
-                      <td>2023-1-2</td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <img
-                          src="/assets/Teddy.jpg"
-                          alt=""
-                          class="rounded-circle"
-                          id="table-img"
-                        />
-                      </td>
-                      <td>Teddy Pascual</td>
-                      <td>420</td>
-                      <td>2023-1-2</td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <img
-                          src="/assets/Teddy.jpg"
-                          alt=""
-                          class="rounded-circle"
-                          id="table-img"
-                        />
-                      </td>
-                      <td>Teddy Pascual</td>
-                      <td>420</td>
-                      <td>2023-1-2</td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <img
-                          src="/assets/Teddy.jpg"
-                          alt=""
-                          class="rounded-circle"
-                          id="table-img"
-                        />
-                      </td>
-                      <td>Teddy Pascual</td>
-                      <td>420</td>
-                      <td>2023-1-2</td>
-                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -304,16 +220,9 @@
                 <p class="desc">|</p>
 
                 <p class="desc">Latest Bid Price: 
-                  
-                    
-                    @if(Session::has('success'))
-                      <span id="lbp2">{{ $highestbid->bid_amount }}</span>
-                    @endif
-                    @if(Session::has('failed'))
-                      <span id="lbp2">{{Session::get('failed')}}</span>
-                    @endif
-                    
-              
+                  @if(!empty($highestbid))
+                      <span id="lbp2">{{ $highestbid->bid_amount }}</span>     
+                  @endif
                 </p>
 
               </div>
@@ -355,7 +264,7 @@
                         <tr>
                           <td class="text-center">
                             <img
-                              src="/assets/Teddy.jpg"
+                              src="/images/profiles/{{ $farmer->profile_img }}"
                               alt=""
                               class="rounded-circle"
                               id="table-img"
@@ -366,71 +275,7 @@
                           <td>{{ $bid->created_at }}</td>
                         </tr>
                       @endforeach
-                        <!-- <tr>
-                          <td class="text-center">
-                            <img
-                              src="/assets/Teddy.jpg"
-                              alt=""
-                              class="rounded-circle"
-                              id="table-img"
-                            />
-                          </td>
-                          <td>Teddy Pascual</td>
-                          <td>420</td>
-                          <td>2023-1-2</td>
-                        </tr>
-                        <tr>
-                          <td class="text-center">
-                            <img
-                              src="/assets/Teddy.jpg"
-                              alt=""
-                              class="rounded-circle"
-                              id="table-img"
-                            />
-                          </td>
-                          <td>Teddy Pascual</td>
-                          <td>420</td>
-                          <td>2023-1-2</td>
-                        </tr>
-                        <tr>
-                          <td class="text-center">
-                            <img
-                              src="/assets/Teddy.jpg"
-                              alt=""
-                              class="rounded-circle"
-                              id="table-img"
-                            />
-                          </td>
-                          <td>Teddy Pascual</td>
-                          <td>420</td>
-                          <td>2023-1-2</td>
-                        </tr>
-                        <tr>
-                          <td class="text-center">
-                            <img
-                              src="/assets/Teddy.jpg"
-                              alt=""
-                              class="rounded-circle"
-                              id="table-img"
-                            />
-                          </td>
-                          <td>Teddy Pascual</td>
-                          <td>420</td>
-                          <td>2023-1-2</td>
-                        </tr>
-                        <tr>
-                          <td class="text-center">
-                            <img
-                              src="/assets/Teddy.jpg"
-                              alt=""
-                              class="rounded-circle"
-                              id="table-img"
-                            />
-                          </td>
-                          <td>Teddy Pascual</td>
-                          <td>420</td>
-                          <td>2023-1-2</td>
-                        </tr> -->
+       
                       </tbody>
                     </table>
                   </div>
@@ -472,7 +317,9 @@
                         @endif
                     
                    
-                 
+                        @foreach($bidders as $bidder)
+                          
+                        @endforeach
                 </div>
               </div>
             </div>
@@ -496,8 +343,8 @@
                         { 
                           _token: '{{ csrf_token() }}',
                           message: message,
-                          channel: @foreach($auctions as $auction){{ $auction->auction_id }}@endforeach,
-                          bidder: {{ Auth::user()['id'] }},
+                          channel: '@foreach($auctions as $auction){{ $auction->auction_id }}@endforeach',
+                          bidder: "{{ Auth::user()['id'] }}",
                         },
                         success: function(response) {
                             // Handle success if needed
@@ -604,7 +451,7 @@
 </script>
 <script type="module">//type="module" is important! do not remove it.
     // Add your WebSocket event listener here
-    @foreach($auctions as $auction)
+    
     window.Echo.channel('chat{{ $auction->auction_id }}').listen('.recieve.message', (data) => {
         // Update UI with received message
         let inputPrice2 = data.message;
@@ -616,7 +463,7 @@
         imagecol.classList.add("text-center");
 
         let image = document.createElement("img");
-        image.src = "../assets/Teddy.jpg";
+        image.src = "/images/profiles/{{ $bidder->profile_img }}";
         image.classList.add("rounded-circle");
         image.id = "table-img";
         imagecol.appendChild(image);
@@ -636,6 +483,7 @@
         @foreach($bids as $bid)
         date.innerText =  '{{ $bid->created_at }}';
         @endforeach
+        
 
         row.appendChild(date);
 
@@ -680,7 +528,6 @@
               })
             }
           */
-    @endforeach
 </script>
 <script type="module">//type="module" is important! do not remove it.
     // Add your WebSocket event listener here
