@@ -51,7 +51,7 @@
               </div>
               <input
                 type="text"
-                class="form-control fs-1"
+                class="form-control fs-1 text-light"
                 aria-label="Text input with radio button"
                 readonly
                 value="Gcash"
@@ -69,7 +69,7 @@
               <div class="input-group mb-3 fs-1">
                 <input
                   type="text"
-                  class="form-control fs-1"
+                  class="form-control fs-1 text-light"
                   value="{{$user->phone}}"
                   aria-describedby="basic-addon2"
                   readonly
